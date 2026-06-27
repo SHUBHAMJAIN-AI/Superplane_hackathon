@@ -1,768 +1,613 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Shubhham Jain — CTO Portfolio</title>
-  <meta name="description" content="Portfolio of Shubhham Jain, CTO. Projects, skills, and contact." />
+  <meta name="description" content="Portfolio of Shubhham Jain, CTO. Projects, skills, and contact information. Light, minimal, accessible design." />
   <style>
     :root{
-      --bg: #f8fafc;        /* slate-50 */
-      --panel: #ffffff;     /* white */
-      --text: #0f172a;      /* slate-900 */
-      --muted: #334155;     /* slate-700 */
-      --line: #e2e8f0;      /* slate-200 */
-      --brand: #2563eb;     /* blue-600 */
-      --brand-weak: #dbeafe;/* blue-100 */
-      --accent: #0ea5e9;    /* sky-500 */
-      --ok: #16a34a;        /* green-600 */
-      --warn: #f59e0b;      /* amber-500 */
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --accent: #2563eb;
+      --accent-600: #1d4ed8;
+      --ring: rgba(37,99,235,0.3);
+      --shadow: 0 8px 24px rgba(2,6,23,0.06);
       --radius: 14px;
-      --shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
-      --shadow-soft: 0 6px 20px rgba(15, 23, 42, 0.06);
-      --focus: 0 0 0 3px var(--brand-weak), 0 0 0 6px rgba(37,99,235,0.35);
     }
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
     html { scroll-behavior: smooth; }
     body{
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
       color: var(--text);
-      background: linear-gradient(180deg, var(--bg), #ffffff 60%);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.55;
     }
-
-    /* Skip link */
-    .skip-link{
-      position:absolute;
-      top:-40px;
-      left:16px;
-      padding:10px 14px;
-      background: var(--text);
-      color:#fff;
-      border-radius: 8px;
-      transition: top .2s ease;
-      z-index:1000;
-    }
-    .skip-link:focus{ top:16px; outline: none; box-shadow: var(--focus); }
-
-    /* Layout */
+    img, svg { max-width: 100%; height: auto; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
     .container{
-      width: min(1100px, 92vw);
-      margin: 0 auto;
+      width: min(1120px, 92vw);
+      margin-inline: auto;
+    }
+    .visually-hidden{
+      position:absolute!important;
+      height:1px;width:1px;
+      overflow:hidden;
+      clip:rect(1px,1px,1px,1px);
+      white-space:nowrap;
+      border:0;padding:0;
     }
 
-    /* Nav */
-    header.site-header{
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: saturate(180%) blur(10px);
-      border-bottom: 1px solid var(--line);
+    /* Header / Nav */
+    .skip-link{
+      position:absolute; left:0; top:-40px;
+      background: var(--accent);
+      color:#fff; padding:10px 14px; border-radius:8px;
+      transition: top .2s ease;
+      z-index:9999;
     }
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+    .skip-link:focus{ top:10px; }
+    header.site-header{
+      position: sticky; top:0; z-index: 1000;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: saturate(150%) blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-bar{
+      display:flex; align-items:center; justify-content:space-between;
       padding: 14px 0;
     }
     .brand{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      font-weight: 700;
-      letter-spacing: 0.2px;
+      display:flex; align-items:center; gap:.6rem;
+      font-weight:700; letter-spacing:0.2px;
     }
-    .brand svg{
-      width:28px;height:28px;
+    .brand-badge{
+      width:28px; height:28px; border-radius:8px; display:grid; place-items:center;
+      background: var(--accent); color:#fff; font-size:16px;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.25);
     }
-    .brand span{ color: var(--text); }
-
-    .nav-links{
-      display:flex;
-      gap: 14px;
-      align-items:center;
+    nav ul{
+      list-style:none; margin:0; padding:0;
+      display:flex; gap: 1rem;
     }
-    .nav-links a{
-      color: var(--muted);
+    nav a{
+      color: var(--text);
       text-decoration:none;
-      padding:8px 10px;
+      padding: 8px 10px;
       border-radius:8px;
-      transition: color .15s ease, background .2s ease, transform .2s ease;
+      border: 1px solid transparent;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
     }
-    .nav-links a:hover{ color: var(--text); background: #f1f5f9; }
-    .nav-links a[aria-current="true"]{
+    nav a:hover{
+      background: #eef2ff;
+      color: var(--accent);
+      border-color: #e0e7ff;
+      text-decoration:none;
+    }
+    nav a.active{
+      background: var(--accent);
       color:#fff;
-      background: var(--brand);
-      box-shadow: var(--shadow-soft);
+      border-color: var(--accent);
     }
-
     .menu-toggle{
       display:none;
-      border:none;
-      background: transparent;
-      padding: 8px;
-      border-radius: 10px;
-    }
-    .menu-toggle:focus{ outline:none; box-shadow: var(--focus); }
-    .menu-toggle svg{ width:26px; height:26px; }
-
-    @media (max-width: 780px){
-      .menu-toggle{ display:block; }
-      .nav-links{
-        position: absolute;
-        top: 60px;
-        right: 4vw;
-        left: 4vw;
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        box-shadow: var(--shadow);
-        padding: 10px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6px;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-6px);
-        transition: opacity .18s ease, transform .18s ease, visibility .18s;
-      }
-      .nav-links.open{
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-      .nav-links a{ text-align:center; padding:10px; }
+      background:transparent;
+      border:1px solid var(--border);
+      padding:8px 10px;
+      border-radius:10px;
+      font-size:14px; color: var(--text);
     }
 
     /* Hero */
     .hero{
-      padding: 72px 0 24px 0;
+      padding: clamp(48px, 7vw, 96px) 0;
     }
-    @media (max-width:780px){ .hero{ padding-top: 48px; } }
-    .hero-inner{
+    .hero-card{
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 4vw, 48px);
       display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 28px;
-      align-items:center;
+      gap: 1rem;
     }
-    @media (max-width: 900px){
-      .hero-inner{ grid-template-columns: 1fr; gap: 18px; }
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:.5rem;
+      font-size:14px; color: var(--muted);
+      padding: 6px 10px; border-radius: 999px; background: #eff6ff;
+      border:1px solid #e0f2fe;
+      width:fit-content;
     }
-    .hero-title{
-      font-size: clamp(32px, 5vw, 52px);
-      line-height: 1.08;
-      margin: 0 0 10px;
-      letter-spacing: -0.5px;
+    .hero h1{
+      font-size: clamp(28px, 4.4vw, 52px);
+      line-height: 1.1; margin: .4rem 0;
+      letter-spacing:-0.5px;
     }
-    .tagline{
-      color: var(--muted);
-      font-size: clamp(16px, 2vw, 18px);
-      margin: 6px 0 18px;
-    }
-    .cta-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      margin-top: 6px;
+    .tagline{ color: var(--muted); font-size: clamp(16px, 1.6vw, 18px); max-width: 70ch; }
+    .cta{
+      display:flex; flex-wrap:wrap; gap:.75rem; margin-top:.5rem;
     }
     .btn{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 12px 16px;
-      border-radius: 12px;
-      text-decoration:none;
-      font-weight: 600;
-      border: 1px solid var(--line);
-      color: var(--text);
-      background: #fff;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      display:inline-flex; align-items:center; gap:.6rem;
+      border:1px solid var(--border);
+      background:#fff; color: var(--text);
+      padding:10px 14px; border-radius:12px;
+      font-weight:600; transition: transform .15s ease, box-shadow .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
+      box-shadow: 0 2px 8px rgba(2,6,23,0.05);
     }
-    .btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow-soft); background: #f8fafc; }
-    .btn.primary{
-      background: var(--brand);
-      color:#fff;
-      border-color: transparent;
+    .btn:hover{ transform: translateY(-1px); }
+    .btn-primary{
+      background: var(--accent); color:#fff; border-color: var(--accent);
+      box-shadow: 0 8px 20px rgba(37,99,235,0.25);
     }
-    .btn.primary:hover{ box-shadow: var(--shadow); }
-    .hero-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      background: var(--brand-weak);
-      color: #1d4ed8;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-weight:600;
-      width:max-content;
-      border: 1px solid #bfdbfe;
-      margin-bottom: 14px;
-    }
-    .hero-graphic{
-      background: conic-gradient(from 180deg at 50% 50%, #e0f2fe, #dbeafe, #e9d5ff, #e0f2fe);
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      min-height: 210px;
-      display:grid;
-      place-items:center;
-      position:relative;
-      overflow:hidden;
-      box-shadow: var(--shadow-soft);
-    }
-    .hero-graphic svg{
-      width: 88%;
-      height: auto;
-      max-width: 460px;
-      filter: drop-shadow(0 12px 20px rgba(37,99,235,0.18));
-    }
+    .btn-primary:hover{ background: var(--accent-600); }
 
     /* Sections */
     section{
-      padding: 34px 0;
+      padding: clamp(40px, 6vw, 88px) 0;
     }
-    section .section-header{
-      display:flex;
-      align-items:baseline;
-      gap: 12px;
-      margin-bottom: 16px;
+    .section-header{
+      margin-bottom: 1.2rem;
     }
     .section-header h2{
-      margin: 0;
-      font-size: clamp(22px, 2.6vw, 30px);
-      letter-spacing: -0.2px;
+      font-size: clamp(22px, 2.6vw, 32px); margin:0 0 .4rem 0;
     }
-    .section-header .kicker{
-      font-size: 14px;
-      color: var(--muted);
-    }
-    .panel{
-      background: var(--panel);
-      border: 1px solid var(--line);
+    .section-header p{ color: var(--muted); margin:0; max-width: 70ch; }
+
+    .card{
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      box-shadow: var(--shadow-soft);
-      padding: 18px;
+      padding: clamp(16px, 3vw, 24px);
+      box-shadow: var(--shadow);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .card:hover{ transform: translateY(-3px); border-color:#cbd5e1; box-shadow: 0 12px 28px rgba(2,6,23,0.09); }
+
+    /* About */
+    .about{
+      display: grid; gap: 1.2rem;
+    }
+    .about-grid{
+      display:grid;
+      gap: clamp(14px, 3vw, 24px);
+      grid-template-columns: 1fr;
+    }
+    .about-item{
+      display:flex; gap: 16px; align-items:flex-start;
+    }
+    .about-emoji{
+      font-size: 22px; line-height:1; background:#f1f5f9; border:1px solid var(--border); border-radius:12px; padding: 10px;
     }
 
     /* Description */
-    .description p{ margin: 0; color: var(--muted); }
-
-    /* About */
-    .about-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+    .description ul{
+      margin: .6rem 0 0 0; padding-left: 1.1rem; color: var(--muted);
     }
-    @media (max-width: 900px){ .about-grid{ grid-template-columns: 1fr; } }
-    .stat{
-      display:flex; gap:10px; align-items:center;
-      padding: 10px 12px;
-      background: #f8fafc;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      font-weight: 600;
-      width: max-content;
-    }
+    .description li{ margin: .25rem 0; }
 
     /* Projects */
     .projects-grid{
       display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: clamp(14px, 3vw, 24px);
+      align-items: stretch;
     }
-    .project{
-      grid-column: span 6;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 16px;
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    .project h3{ margin: .4rem 0 .2rem; font-size: 18px; }
+    .project p{ margin: .2rem 0 0; color: var(--muted); }
+    .project .badge{
+      display:inline-block; font-size: 12px; color: var(--muted);
+      padding: 4px 8px; border-radius:999px; border:1px dashed #d1d5db; background:#f8fafc; margin-top:.6rem;
     }
-    .project:hover{
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
-      border-color: #cbd5e1;
+    .thumb{
+      background: linear-gradient(135deg, #eff6ff, #fafafa);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px; height: 140px;
+      display:grid; place-items:center; overflow:hidden;
     }
-    .project.wide{ grid-column: span 12; }
-    @media (max-width: 980px){
-      .project{ grid-column: span 12; }
-    }
-    .project .top{
-      display:flex; align-items:center; justify-content:space-between; gap: 12px;
-    }
-    .project .title{
-      display:flex; align-items:center; gap:10px; font-weight: 700;
-    }
-    .project .title svg{ width:24px; height:24px; }
-    .project p{ margin: 0; color: var(--muted); }
-    .tags{ display:flex; flex-wrap: wrap; gap: 8px; }
-    .tag{
-      font-size: 12px;
-      background: #f1f5f9;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 6px 10px;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-    .actions{
-      margin-top: 2px;
-      display:flex; gap: 10px; flex-wrap:wrap;
-    }
-    .link{
-      display:inline-flex; align-items:center; gap:6px;
-      text-decoration: none;
-      color: var(--brand);
-      font-weight: 600;
-      padding: 8px 10px;
-      border-radius: 10px;
-      transition: background .2s ease;
-    }
-    .link:hover{ background: var(--brand-weak); }
+    .thumb svg{ width: 100%; height: 100%; }
 
     /* Skills */
+    .skill-tags{
+      display:flex; flex-wrap: wrap; gap: .5rem;
+    }
+    .tag{
+      background:#f1f5f9; color:#0f172a; border:1px solid var(--border);
+      padding: 6px 10px; border-radius: 999px; font-weight:600; font-size:14px;
+      transition: background .2s ease, transform .15s ease;
+    }
+    .tag:hover{ background:#e2e8f0; transform: translateY(-1px); }
+
     .skills-grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      display:grid; gap: clamp(14px, 3vw, 24px);
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
-    @media (max-width: 900px){ .skills-grid{ grid-template-columns: 1fr; } }
-    .skill-card{
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: var(--shadow-soft);
-    }
-    .skill-card h3{ margin: 0 0 8px; font-size: 18px; }
-    .chips{ display:flex; flex-wrap:wrap; gap:8px; }
-    .chip{
-      background:#f8fafc;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      padding:8px 10px;
-      border-radius:10px;
-      font-size: 13px;
-      white-space:nowrap;
-    }
+    .skill-list{ margin: .6rem 0 0 0; padding-left: 1.1rem; color: var(--muted); }
+    .skill-list li{ margin:.25rem 0; }
 
     /* Contact */
-    .contact .panel{ display:grid; gap: 12px; }
-    .contact-row{
-      display:flex; align-items:center; gap: 12px; flex-wrap:wrap;
-    }
-    .code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      background:#0f172a; color:#e2e8f0; padding: 10px 12px; border-radius: 10px;
-      border: 1px solid #1f2937;
-    }
-    .ghost{
-      background: transparent;
-      border: 1px dashed var(--line);
-      color: var(--text);
+    .contact-card .email{
+      display:inline-flex; align-items:center; gap:.5rem; font-size:18px; font-weight:700;
+      padding:10px 14px; border-radius:12px; border:1px dashed #cbd5e1; background:#f8fafc;
     }
 
     /* Footer */
     footer{
-      padding: 28px 0 54px;
-      color: var(--muted);
-      font-size: 14px;
-      border-top: 1px solid var(--line);
-      background: #ffffff;
+      padding: 32px 0; color: var(--muted); font-size: 14px; text-align: center;
+    }
+
+    /* Responsive Nav */
+    @media (max-width: 760px){
+      .menu-toggle{ display:inline-flex; align-items:center; gap:.5rem; }
+      nav ul{
+        position:absolute;
+        top:60px; right:4%;
+        background: var(--surface);
+        border:1px solid var(--border);
+        border-radius:12px;
+        padding:10px; box-shadow: var(--shadow);
+        display:none; flex-direction: column; gap:.2rem;
+        width: min(260px, 92vw);
+      }
+      nav ul.open{ display:flex; }
+      nav a{ display:block; padding:10px; }
+    }
+    @media (min-width: 860px){
+      .hero-card{
+        grid-template-columns: 1.2fr 1fr;
+        align-items: center;
+      }
+      .about-grid{
+        grid-template-columns: 1.2fr 1fr;
+      }
     }
 
     /* Focus */
-    a:focus, button:focus{ outline: none; box-shadow: var(--focus); }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+    :focus-visible{
+      outline: 3px solid var(--ring);
+      outline-offset: 2px;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header" role="banner">
-    <div class="container nav">
-      <a class="brand" href="#hero" aria-label="Home">
-        <svg viewBox="0 0 64 64" role="img" aria-labelledby="logoTitle logoDesc" xmlns="http://www.w3.org/2000/svg">
-          <title id="logoTitle">S monogram</title>
-          <desc id="logoDesc">Geometric S inside a rounded square</desc>
-          <rect x="4" y="4" width="56" height="56" rx="14" fill="#2563eb" />
-          <path d="M18 24c0-4.418 3.582-8 8-8h12c4.418 0 8 3.582 8 8s-3.582 8-8 8H26c-4.418 0-8 3.582-8 8s3.582 8 8 8h12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-        </svg>
-        <span>Shubhham Jain</span>
+  <header class="site-header" id="top" role="banner">
+    <div class="container nav-bar">
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="brand-badge" aria-hidden="true">🧠</span>
+        <span>Shubhham&nbsp;Jain — CTO</span>
       </a>
 
-      <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-          <path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+      <button class="menu-toggle" aria-controls="site-menu" aria-expanded="false" id="menuButton">
+        ☰ Menu
       </button>
 
-      <nav class="nav-links" aria-label="Primary">
-        <a href="#description">Description</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+      <nav aria-label="Primary">
+        <ul id="site-menu">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#description" class="nav-link">Description</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
-  <main id="main">
-    <section id="hero" class="hero" aria-labelledby="hero-title">
-      <div class="container hero-inner">
+  <main id="main" class="container" role="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-card">
         <div>
-          <div class="hero-badge" aria-label="Role">
-            🚀 CTO • Product-led technology
-          </div>
-          <h1 id="hero-title" class="hero-title">Shubhham Jain</h1>
-          <p class="tagline">Engineering calm, resilient systems and teams. I turn ambiguous ideas into scalable, privacy‑respecting products.</p>
-          <div class="cta-row">
-            <a class="btn primary" href="#projects" aria-label="View projects">
-              <span>View Projects</span> ↗
-            </a>
-            <a class="btn" href="mailto:300shubhamjain@gmail.com" aria-label="Email Shubhham Jain">
-              <span>Email</span> ✉️
-            </a>
+          <span class="eyebrow">🚀 CTO, builder of thoughtful AI products</span>
+          <h1 id="hero-title">Hi, I’m Shubhham Jain.</h1>
+          <p class="tagline">I lead engineering, product, and research to turn ideas into resilient, human‑centered systems. Previously scaled teams, shipped ML platforms, and delivered production‑grade AI features end‑to‑end.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#projects" aria-label="See projects">See projects</a>
+            <a class="btn" href="#contact" aria-label="Contact Shubhham">Contact</a>
           </div>
         </div>
-        <div class="hero-graphic" aria-hidden="true">
-          <svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stop-color="#60a5fa"/>
-                <stop offset="1" stop-color="#22d3ee"/>
-              </linearGradient>
-              <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stop-color="#c084fc"/>
-                <stop offset="1" stop-color="#60a5fa"/>
-              </linearGradient>
-              <filter id="s">
-                <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="rgba(37,99,235,0.35)"/>
-              </filter>
-            </defs>
-            <rect x="24" y="24" width="472" height="272" rx="18" fill="#ffffff" stroke="#e2e8f0"/>
-            <rect x="40" y="48" width="150" height="12" rx="6" fill="#cbd5e1"/>
-            <rect x="40" y="70" width="220" height="8" rx="4" fill="#e2e8f0"/>
-            <rect x="40" y="90" width="180" height="8" rx="4" fill="#e2e8f0"/>
-            <g filter="url(#s)">
-              <circle cx="270" cy="170" r="62" fill="url(#g1)"/>
-              <path d="M230 210c0-22 18-40 40-40h34c15 0 28-13 28-28s-13-28-28-28h-52" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
-            </g>
-            <g>
-              <rect x="340" y="110" width="120" height="86" rx="12" fill="url(#g2)" opacity="0.9"/>
-              <rect x="352" y="122" width="96" height="10" rx="5" fill="#fff" opacity="0.9"/>
-              <rect x="352" y="140" width="80" height="8" rx="4" fill="#fff" opacity="0.9"/>
-              <rect x="352" y="156" width="92" height="8" rx="4" fill="#fff" opacity="0.9"/>
-            </g>
-            <g>
-              <rect x="40" y="226" width="440" height="40" rx="10" fill="#f1f5f9"/>
-              <rect x="52" y="238" width="170" height="16" rx="8" fill="#a5b4fc"/>
-              <rect x="230" y="238" width="90" height="16" rx="8" fill="#93c5fd"/>
-              <rect x="326" y="238" width="86" height="16" rx="8" fill="#7dd3fc"/>
-            </g>
-          </svg>
-        </div>
-      </div>
-    </section>
-
-    <section id="description" class="description" aria-labelledby="description-title">
-      <div class="container">
-        <div class="section-header">
-          <h2 id="description-title">Description</h2>
-          <span class="kicker">Snapshot</span>
-        </div>
-        <div class="panel">
-          <p>CTO focused on building human‑centered products with lean teams. I specialize in system design, rapid prototyping, and guiding products from 0→1→scale with rigorous reliability, observability, and privacy by design.</p>
+        <div class="card" aria-label="Profile illustration">
+          <div class="thumb" role="img" aria-label="Abstract profile graphic">
+            <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#93c5fd"/>
+                  <stop offset="100%" stop-color="#e0e7ff"/>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="400" height="160" rx="18" fill="url(#g1)" opacity="0.6"/>
+              <circle cx="90" cy="80" r="36" fill="#2563eb" opacity="0.9"/>
+              <rect x="150" y="50" width="160" height="18" rx="8" fill="#1d4ed8" opacity="0.8"/>
+              <rect x="150" y="78" width="120" height="18" rx="8" fill="#3b82f6" opacity="0.8"/>
+              <rect x="150" y="106" width="80" height="18" rx="8" fill="#60a5fa" opacity="0.8"/>
+              <g transform="translate(290,30)">
+                <rect x="0" y="0" width="96" height="96" rx="14" fill="#fff" stroke="#e2e8f0"/>
+                <path d="M16 64 L48 24 L80 64" stroke="#2563eb" stroke-width="6" fill="none" stroke-linecap="round"/>
+                <circle cx="48" cy="64" r="8" fill="#1d4ed8"/>
+              </g>
+            </svg>
+          </div>
+          <p style="margin:.8rem 0 0;color:var(--muted)">Lightweight systems, strong fundamentals, clear interfaces.</p>
         </div>
       </div>
     </section>
 
     <section id="about" aria-labelledby="about-title">
-      <div class="container">
-        <div class="section-header">
-          <h2 id="about-title">About</h2>
-          <span class="kicker">Principles and background</span>
-        </div>
-        <div class="about-grid">
-          <article class="panel">
-            <p>Over the past decade, I’ve led teams across product, platform, and AI—shipping resilient systems under tight constraints. My approach is product-first: clarify the problem, reduce scope, instrument early, and iterate with data. I care deeply about developer experience and sustainable velocity.</p>
-            <div style="height:10px"></div>
-            <ul>
-              <li>Product-led architecture with measurable outcomes</li>
-              <li>Simple over clever; boring tech where it counts</li>
-              <li>Security and privacy as defaults, not features</li>
-              <li>Documentation and mentorship as force multipliers</li>
-            </ul>
-          </article>
-          <aside class="panel" aria-label="Highlights">
-            <div class="stat">🧭 0→1 founder/CTO experience</div>
-            <div class="stat">📈 Led teams 3→35 engineers</div>
-            <div class="stat">☁️ Multi-cloud + edge expertise</div>
-            <div class="stat">🔒 SOC2 & GDPR implementations</div>
-          </aside>
-        </div>
+      <div class="section-header">
+        <h2 id="about-title">About</h2>
+        <p>Builder, mentor, and systems thinker. I thrive at the intersection of product strategy and deep engineering.</p>
+      </div>
+      <div class="about-grid">
+        <article class="card about">
+          <div class="about-item">
+            <div class="about-emoji" aria-hidden="true">💡</div>
+            <div>
+              <strong>Vision to execution</strong>
+              <p style="margin:.3rem 0 0; color:var(--muted)">From 0→1 prototypes to 1→n platforms, I bridge research, product, and infrastructure to ship outcomes.</p>
+            </div>
+          </div>
+          <div class="about-item">
+            <div class="about-emoji" aria-hidden="true">🧭</div>
+            <div>
+              <strong>Hands-on leadership</strong>
+              <p style="margin:.3rem 0 0; color:var(--muted)">I set direction, hire great people, and write code where it matters most—clarity over complexity.</p>
+            </div>
+          </div>
+          <div class="about-item">
+            <div class="about-emoji" aria-hidden="true">🔒</div>
+            <div>
+              <strong>Trust & reliability</strong>
+              <p style="margin:.3rem 0 0; color:var(--muted)">Privacy, safety, and observability are first-class features, not afterthoughts.</p>
+            </div>
+          </div>
+        </article>
+        <aside class="card">
+          <h3 style="margin:.2rem 0 .6rem; font-size:18px;">Quick facts</h3>
+          <ul class="skill-list" style="margin-top:.2rem;">
+            <li>10+ years leading cross‑functional engineering teams</li>
+            <li>Focus: AI/ML platforms, product engineering, DX</li>
+            <li>Based in a remote‑first world; async by default</li>
+            <li>Currently building next‑gen tools at <strong>ShubLAbs .ai</strong></li>
+          </ul>
+        </aside>
       </div>
     </section>
 
+    <section id="description" class="description" aria-labelledby="description-title">
+      <div class="section-header">
+        <h2 id="description-title">Description</h2>
+        <p>A snapshot of how I approach technology and teams.</p>
+      </div>
+      <article class="card">
+        <p style="margin-top:0">I design teams and systems that scale gracefully. My philosophy is simple: reduce surface area, invest in tooling, and make the right thing the easiest thing.</p>
+        <ul>
+          <li>Start with outcomes, measure with clear metrics, iterate quickly.</li>
+          <li>Bias to boring tech for core paths; innovate where it creates leverage.</li>
+          <li>APIs first, strong contracts, observability built in.</li>
+          <li>Small autonomous teams, shared context, excellent taste in defaults.</li>
+        </ul>
+      </article>
+    </section>
+
     <section id="projects" aria-labelledby="projects-title">
-      <div class="container">
-        <div class="section-header">
-          <h2 id="projects-title">Projects</h2>
-          <span class="kicker">Selected work</span>
-        </div>
+      <div class="section-header">
+        <h2 id="projects-title">Projects</h2>
+        <p>Selected work spanning AI platforms, developer tools, and production systems.</p>
+      </div>
 
-        <div class="projects-grid" role="list">
-          <article class="project wide" role="listitem" aria-labelledby="p1-title">
-            <div class="top">
-              <div class="title">
-                <svg viewBox="0 0 32 32" aria-hidden="true">
-                  <rect x="3" y="3" width="26" height="26" rx="7" fill="#2563eb"/>
-                  <path d="M9 12c0-2.2 1.8-4 4-4h6a4 4 0 110 8h-6a4 4 0 000 8h6" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-                <span id="p1-title">ShubLAbs .ai</span>
-              </div>
-              <span class="tag" aria-label="Status">Live</span>
-            </div>
-            <p>Autonomous experimentation platform for AI teams: versioned datasets, evals at PR time, and governance. Reduced model drift by 37% and slashed iteration time from days to hours.</p>
-            <div class="tags" aria-label="Technologies">
-              <span class="tag">TypeScript</span>
-              <span class="tag">Python</span>
-              <span class="tag">Postgres</span>
-              <span class="tag">gRPC</span>
-              <span class="tag">Kubernetes</span>
-              <span class="tag">OpenTelemetry</span>
-            </div>
-            <div class="actions">
-              <a class="link" href="#" aria-label="Open live demo of ShubLAbs .ai">Live demo</a>
-              <a class="link" href="#" aria-label="Read case study for ShubLAbs .ai">Case study</a>
-            </div>
-          </article>
+      <div class="projects-grid">
+        <article class="card project">
+          <div class="thumb" role="img" aria-label="ShubLAbs .ai abstract mark">
+            <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#dbeafe"/>
+                  <stop offset="100%" stop-color="#bfdbfe"/>
+                </linearGradient>
+              </defs>
+              <rect width="400" height="140" rx="14" fill="url(#g2)"/>
+              <g transform="translate(40,28)">
+                <rect x="0" y="0" width="120" height="84" rx="12" fill="#fff" stroke="#e2e8f0"/>
+                <path d="M20 60 C40 30, 80 30, 100 60" stroke="#2563eb" stroke-width="6" fill="none" stroke-linecap="round"/>
+              </g>
+              <g transform="translate(190,28)">
+                <rect x="0" y="0" width="170" height="20" rx="10" fill="#1d4ed8" opacity=".9"/>
+                <rect x="0" y="32" width="130" height="20" rx="10" fill="#3b82f6" opacity=".9"/>
+                <rect x="0" y="64" width="80" height="20" rx="10" fill="#60a5fa" opacity=".9"/>
+              </g>
+            </svg>
+          </div>
+          <h3>ShubLAbs .ai</h3>
+          <p>Composable AI stack for rapid prototyping to production—prompt routing, evals, and observability with a clean SDK.</p>
+          <span class="badge">AI Platform • SDK • Observability</span>
+        </article>
 
-          <article class="project" role="listitem" aria-labelledby="p2-title">
-            <div class="top">
-              <div class="title">
-                <svg viewBox="0 0 32 32" aria-hidden="true">
-                  <circle cx="16" cy="16" r="12" fill="#0ea5e9"/>
-                  <path d="M10 18l4 3 8-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span id="p2-title">Edge Insights</span>
-              </div>
-              <span class="tag">Private beta</span>
-            </div>
-            <p>Real‑time analytics pipeline at the edge with privacy budgets. Sub‑second dashboards for 5k+ devices without centralizing PII.</p>
-            <div class="tags">
-              <span class="tag">WebAssembly</span>
-              <span class="tag">Rust</span>
-              <span class="tag">Cloudflare Workers</span>
-              <span class="tag">Arrow</span>
-            </div>
-            <div class="actions">
-              <a class="link" href="#" aria-label="View overview of Edge Insights">Overview</a>
-            </div>
-          </article>
+        <article class="card project">
+          <div class="thumb" role="img" aria-label="EdgeBoard abstract mark">
+            <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="400" height="140" rx="14" fill="#eef2ff"/>
+              <g transform="translate(36,28)" stroke="#4f46e5" fill="none" stroke-width="4">
+                <rect x="0" y="0" width="120" height="84" rx="10" fill="#fff" stroke="#c7d2fe"/>
+                <circle cx="60" cy="42" r="20" fill="#4f46e5"/>
+                <path d="M140 42 H 320" stroke="#4f46e5" stroke-linecap="round"/>
+                <path d="M160 62 H 260" stroke="#93c5fd" stroke-linecap="round"/>
+                <path d="M160 22 H 220" stroke="#6366f1" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <h3>EdgeBoard</h3>
+          <p>Realtime analytics and feature store at the edge with minimal latency and strong privacy guarantees.</p>
+          <span class="badge">Edge • Streaming • Privacy</span>
+        </article>
 
-          <article class="project" role="listitem" aria-labelledby="p3-title">
-            <div class="top">
-              <div class="title">
-                <svg viewBox="0 0 32 32" aria-hidden="true">
-                  <rect x="6" y="6" width="20" height="20" rx="4" fill="#16a34a"/>
-                  <path d="M10 12h12M10 16h12M10 20h8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <span id="p3-title">OpsLens</span>
-              </div>
-              <span class="tag">OSS</span>
-            </div>
-            <p>Observability starter for small teams: sensible defaults for tracing, metrics, and logs with one‑line setup.</p>
-            <div class="tags">
-              <span class="tag">OpenTelemetry</span>
-              <span class="tag">Grafana</span>
-              <span class="tag">Go</span>
-              <span class="tag">Terraform</span>
-            </div>
-            <div class="actions">
-              <a class="link" href="#" aria-label="Open Git repo for OpsLens">Repo</a>
-              <a class="link" href="#" aria-label="Read documentation for OpsLens">Docs</a>
-            </div>
-          </article>
+        <article class="card project">
+          <div class="thumb" role="img" aria-label="PromptForge abstract mark">
+            <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="400" height="140" rx="14" fill="#f0f9ff"/>
+              <g transform="translate(40,30)">
+                <rect x="0" y="0" width="100" height="80" rx="10" fill="#fff" stroke="#bae6fd"/>
+                <rect x="16" y="18" width="68" height="10" rx="5" fill="#0ea5e9"/>
+                <rect x="16" y="36" width="52" height="10" rx="5" fill="#38bdf8"/>
+                <rect x="16" y="54" width="40" height="10" rx="5" fill="#7dd3fc"/>
+              </g>
+              <g transform="translate(170,30)">
+                <rect x="0" y="0" width="190" height="80" rx="12" fill="#e0f2fe"/>
+                <path d="M20 40 H 170" stroke="#0284c7" stroke-width="6" stroke-linecap="round"/>
+                <path d="M40 20 H 150" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
+                <path d="M40 60 H 120" stroke="#0ea5e9" stroke-width="6" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <h3>PromptForge</h3>
+          <p>Versioned prompt pipelines with evaluation and A/B tooling that meet CI/CD where teams work.</p>
+          <span class="badge">Tooling • Evals • CI</span>
+        </article>
 
-          <article class="project" role="listitem" aria-labelledby="p4-title">
-            <div class="top">
-              <div class="title">
-                <svg viewBox="0 0 32 32" aria-hidden="true">
-                  <rect x="3" y="8" width="26" height="16" rx="8" fill="#f59e0b"/>
-                  <circle cx="11" cy="16" r="4" fill="#fff"/>
-                  <circle cx="21" cy="16" r="4" fill="#fff" opacity="0.6"/>
-                </svg>
-                <span id="p4-title">SyncKit</span>
-              </div>
-              <span class="tag">Prototype</span>
-            </div>
-            <p>Conflict‑free data sync for offline‑first apps with transparent encryption and background merges.</p>
-            <div class="tags">
-              <span class="tag">CRDT</span>
-              <span class="tag">TypeScript</span>
-              <span class="tag">WebCrypto</span>
-            </div>
-            <div class="actions">
-              <a class="link" href="#" aria-label="Try SyncKit playground">Playground</a>
-            </div>
-          </article>
-        </div>
+        <article class="card project">
+          <div class="thumb" role="img" aria-label="DataRibbon abstract mark">
+            <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="400" height="140" rx="14" fill="#ecfeff"/>
+              <g transform="translate(36,26)">
+                <path d="M0 60 C 60 20, 120 100, 180 60 S 300 20, 360 60" stroke="#06b6d4" stroke-width="6" fill="none"/>
+                <circle cx="180" cy="60" r="10" fill="#0ea5e9"/>
+              </g>
+            </svg>
+          </div>
+          <h3>DataRibbon</h3>
+          <p>Secure data contracts and lineage with automatic schema diffs and alerting.</p>
+          <span class="badge">Data • Contracts • Lineage</span>
+        </article>
       </div>
     </section>
 
     <section id="skills" aria-labelledby="skills-title">
-      <div class="container">
-        <div class="section-header">
-          <h2 id="skills-title">Skills</h2>
-          <span class="kicker">What I use</span>
-        </div>
-        <div class="skills-grid">
-          <article class="skill-card" aria-labelledby="s1">
-            <h3 id="s1">Leadership</h3>
-            <div class="chips">
-              <span class="chip">Product strategy</span>
-              <span class="chip">Hiring & org design</span>
-              <span class="chip">Roadmapping</span>
-              <span class="chip">Mentorship</span>
-              <span class="chip">Stakeholder comms</span>
-            </div>
-          </article>
-          <article class="skill-card" aria-labelledby="s2">
-            <h3 id="s2">Architecture</h3>
-            <div class="chips">
-              <span class="chip">Distributed systems</span>
-              <span class="chip">Event-driven</span>
-              <span class="chip">SRE & Observability</span>
-              <span class="chip">Security & Privacy</span>
-              <span class="chip">Cost optimization</span>
-            </div>
-          </article>
-          <article class="skill-card" aria-labelledby="s3">
-            <h3 id="s3">Stack</h3>
-            <div class="chips">
-              <span class="chip">TypeScript</span>
-              <span class="chip">Node.js</span>
-              <span class="chip">Python</span>
-              <span class="chip">Go</span>
-              <span class="chip">React</span>
-              <span class="chip">Postgres</span>
-              <span class="chip">Redis</span>
-              <span class="chip">gRPC</span>
-              <span class="chip">Kubernetes</span>
-              <span class="chip">AWS/GCP</span>
-            </div>
-          </article>
-        </div>
+      <div class="section-header">
+        <h2 id="skills-title">Skills</h2>
+        <p>Leadership and hands‑on capabilities spanning product, AI, and platform engineering.</p>
+      </div>
+      <div class="skills-grid">
+        <article class="card">
+          <h3 style="margin:.2rem 0 .6rem; font-size:18px;">Leadership</h3>
+          <div class="skill-tags" aria-label="Leadership skills">
+            <span class="tag">Org design</span>
+            <span class="tag">Roadmapping</span>
+            <span class="tag">Hiring</span>
+            <span class="tag">Mentorship</span>
+            <span class="tag">Product strategy</span>
+          </div>
+          <ul class="skill-list">
+            <li>Ownership and clarity of priorities</li>
+            <li>Rituals that reduce overhead and increase signal</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3 style="margin:.2rem 0 .6rem; font-size:18px;">AI / ML</h3>
+          <div class="skill-tags" aria-label="AI skills">
+            <span class="tag">LLMs</span>
+            <span class="tag">Retrieval</span>
+            <span class="tag">Evals</span>
+            <span class="tag">Feature stores</span>
+            <span class="tag">MLOps</span>
+          </div>
+          <ul class="skill-list">
+            <li>Prompt design, routing, and observability</li>
+            <li>Offline metrics ↔ online performance loops</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3 style="margin:.2rem 0 .6rem; font-size:18px;">Platform</h3>
+          <div class="skill-tags" aria-label="Platform skills">
+            <span class="tag">APIs</span>
+            <span class="tag">Distributed systems</span>
+            <span class="tag">Postgres</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Go</span>
+            <span class="tag">Python</span>
+          </div>
+          <ul class="skill-list">
+            <li>Strong contracts, performance, and DX</li>
+            <li>Infrastructure as product; observability by default</li>
+          </ul>
+        </article>
       </div>
     </section>
 
-    <section id="contact" class="contact" aria-labelledby="contact-title">
-      <div class="container">
-        <div class="section-header">
-          <h2 id="contact-title">Contact</h2>
-          <span class="kicker">Let’s build</span>
-        </div>
-        <div class="panel">
-          <div>Prefer email. I read everything.</div>
-          <div class="contact-row" role="group" aria-label="Email actions">
-            <span class="code" id="email">300shubhamjain@gmail.com</span>
-            <button class="btn ghost" type="button" id="copyEmail" aria-describedby="email">Copy</button>
-            <a class="btn" href="mailto:300shubhamjain@gmail.com">Open in mail ✉️</a>
-          </div>
-          <small style="color:var(--muted)">Available for advisory, fractional leadership, and select hands‑on engagements.</small>
-        </div>
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="section-header">
+        <h2 id="contact-title">Contact</h2>
+        <p>Open to thoughtful conversations, advisory, and collaborations.</p>
       </div>
+      <article class="card contact-card">
+        <p style="margin-top:0">Reach me directly at:</p>
+        <p class="email">📫 <a href="mailto:300shubhamjain@gmail.com">300shubhamjain@gmail.com</a></p>
+        <div class="cta" style="margin-top:.8rem;">
+          <a class="btn btn-primary" href="mailto:300shubhamjain@gmail.com?subject=Hello%20Shubhham">Say hello</a>
+          <a class="btn" href="#projects">Browse projects</a>
+        </div>
+      </article>
     </section>
   </main>
 
   <footer role="contentinfo">
     <div class="container">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap: 10px; flex-wrap:wrap;">
-        <span>© <span id="year"></span> Shubhham Jain</span>
-        <span>Built with semantic HTML, CSS grid/flex, and tiny JS.</span>
-      </div>
+      <p>© <span id="year"></span> Shubhham Jain. Built with care and no external dependencies.</p>
     </div>
   </footer>
 
   <script>
     // Mobile menu toggle
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav-links');
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', String(open));
-    });
-    // Close menu on link click (mobile)
-    nav.addEventListener('click', e => {
-      const target = e.target.closest('a');
-      if(!target) return;
-      if(window.matchMedia('(max-width: 780px)').matches){
-        nav.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Active section highlighting
-    const links = Array.from(document.querySelectorAll('.nav-links a'));
-    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-
-    const setActive = (id) => {
-      links.forEach(a => a.setAttribute('aria-current', a.getAttribute('href') === '#' + id));
-    };
-
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          setActive(entry.target.id);
+    (function(){
+      const btn = document.getElementById('menuButton');
+      const menu = document.getElementById('site-menu');
+      if(!btn || !menu) return;
+      btn.addEventListener('click', () => {
+        const open = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(open));
+      });
+      // Close menu when clicking a link
+      menu.addEventListener('click', (e) => {
+        const t = e.target;
+        if(t.tagName === 'A' && menu.classList.contains('open')){
+          menu.classList.remove('open');
+          btn.setAttribute('aria-expanded','false');
         }
       });
-    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+    })();
 
-    sections.forEach(sec => obs.observe(sec));
+    // Scroll spy for active nav links
+    (function(){
+      const links = document.querySelectorAll('.nav-link');
+      const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      if(!('IntersectionObserver' in window)) return;
 
-    // Year
+      const setActive = (id) => {
+        links.forEach(l => {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+        });
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            setActive(entry.target.id);
+          }
+        });
+      }, { rootMargin: '-40% 0px -50% 0px', threshold: 0.01 });
+
+      sections.forEach(sec => observer.observe(sec));
+    })();
+
+    // Current year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Copy email
-    const btnCopy = document.getElementById('copyEmail');
-    const emailEl = document.getElementById('email');
-    btnCopy.addEventListener('click', async () => {
-      try{
-        await navigator.clipboard.writeText(emailEl.textContent.trim());
-        btnCopy.textContent = 'Copied ✓';
-        btnCopy.style.borderColor = 'var(--ok)';
-        btnCopy.style.color = 'var(--ok)';
-        setTimeout(() => {
-          btnCopy.textContent = 'Copy';
-          btnCopy.style.borderColor = 'var(--line)';
-          btnCopy.style.color = 'var(--text)';
-        }, 1800);
-      }catch(e){
-        btnCopy.textContent = 'Press Ctrl+C';
-        const range = document.createRange(); range.selectNodeContents(emailEl);
-        const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
-      }
-    });
-
-    // Enhance focus-visible (basic)
-    try{
-      document.body.addEventListener('mousedown', () => document.body.classList.add('using-mouse'));
-      document.body.addEventListener('keydown', e => {
-        if(e.key === 'Tab') document.body.classList.remove('using-mouse');
-      });
-    }catch{}
   </script>
 </body>
 </html>
