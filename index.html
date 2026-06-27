@@ -2,552 +2,628 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shubham Jain — CTO at ShubLabs.ai</title>
-  <meta name="description" content="Shubham Jain — CTO at ShubLabs.ai. Building AI infrastructure for developer tools. Projects: ShubLabs.ai, EdgePulse, Portfolio Factory. Skills: TypeScript, Python, Go, Kubernetes, LLM Ops, distributed systems, MLOps, observability, leadership." />
-  <meta name="color-scheme" content="light">
+  <meta name="description" content="Portfolio of Shubham Jain, CTO at ShubLabs.ai. Building AI infrastructure for developer tools: inference gateways, realtime analytics, and workflow automation." />
+  <meta name="theme-color" content="#2563eb" />
   <style>
     :root{
-      --bg: #F7FAFF;
-      --card: #FFFFFF;
-      --text: #0F172A;
-      --muted: #475569;
-      --accent: #2563EB;
-      --accent-2: #1E40AF;
-      --ring: rgba(37,99,235,0.25);
-      --border: #E5E7EB;
-      --shadow: 0 1px 2px rgba(15,23,42,.06), 0 8px 24px rgba(2,6,23,.06);
-      --radius: 14px;
-      --space: clamp(18px, 2vw, 28px);
-      --maxw: 1120px;
+      --bg:#f7fafc;
+      --surface:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --accent:#2563eb;
+      --accent-600:#1d4ed8;
+      --border:#e2e8f0;
+      --ring:rgba(37,99,235,.4);
+      --shadow:0 1px 2px rgba(15,23,42,.06), 0 8px 24px rgba(15,23,42,.06);
+      --radius:14px;
+      --radius-sm:10px;
+      --radius-xs:8px;
+      --space: clamp(16px, 2vw, 24px);
+      --headline: clamp(32px, 6vw, 64px);
+      --subhead: clamp(18px, 3vw, 24px);
+      --container: 1120px;
+      --focus: 2px;
+      --speed: 220ms;
     }
-    @media (prefers-color-scheme: dark){
+    @media (prefers-color-scheme: dark) {
       :root{
-        --bg: #0B1220;
-        --card: #0F172A;
-        --text: #E6EDF7;
-        --muted: #9FB0C8;
-        --accent: #4C8DFF;
-        --accent-2: #90B6FF;
-        --ring: rgba(76,141,255,0.35);
-        --border: #1F2A44;
-        --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35);
+        --bg:#0b1220;
+        --surface:#0f1629;
+        --text:#e6edf7;
+        --muted:#9fb0c7;
+        --accent:#3b82f6;
+        --accent-600:#2f6ed8;
+        --border:#1f2a44;
+        --ring:rgba(59,130,246,.45);
+        --shadow:0 1px 2px rgba(3,7,18,.3), 0 8px 24px rgba(3,7,18,.3);
       }
-      meta[name="color-scheme"]{ content: dark light; }
     }
-    * { box-sizing: border-box }
-    html, body { height: 100% }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
-      margin: 0;
+      margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
-      line-height: 1.6;
-      color: var(--text);
-      background: radial-gradient(1200px 600px at 70% -10%, rgba(37,99,235,.12), transparent 60%), var(--bg);
-      letter-spacing: 0.2px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(37,99,235,.06), transparent 40%),
+                  radial-gradient(1000px 500px at -20% 0%, rgba(37,99,235,.06), transparent 40%),
+                  var(--bg);
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
-    a{ color: var(--accent); text-underline-offset: 3px }
-    a:hover{ color: var(--accent-2) }
-    img, svg{ display: block; max-width: 100% }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .container{
+      max-width:var(--container);
+      margin-inline:auto;
+      padding-inline: max(var(--space), env(safe-area-inset-left));
+      padding-inline: max(var(--space), env(safe-area-inset-right));
+    }
+
     /* Skip link */
     .skip{
-      position: absolute; left: 0; top: -40px; background: var(--card); color: var(--text);
-      padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border);
-      box-shadow: var(--shadow); transition: top .2s ease;
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
     }
-    .skip:focus{ top: 12px; outline: 3px solid var(--ring) }
-    /* Container */
-    .wrap{ width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 20px }
-    /* Nav */
+    .skip:focus{
+      left: var(--space);
+      top: var(--space);
+      width:auto; height:auto; padding:8px 12px;
+      background:var(--surface); color:var(--text); border-radius:var(--radius-xs);
+      box-shadow:var(--shadow); border:1px solid var(--border);
+      z-index:9999;
+    }
+
+    /* Header / Nav */
     header{
-      position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(1.2) blur(10px);
-      background: color-mix(in oklab, var(--bg) 78%, transparent);
-      border-bottom: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(1.2) blur(8px);
+      background: color-mix(in oklch, var(--surface) 70%, transparent);
+      border-bottom:1px solid var(--border);
     }
     .nav{
-      display: flex; align-items: center; justify-content: space-between; height: 64px;
+      display:flex; align-items:center; justify-content:space-between;
+      padding-block: 14px;
+      gap:12px;
     }
     .brand{
-      display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;
+      display:flex; align-items:center; gap:10px; text-decoration:none;
+      color:var(--text);
     }
-    .logo{
-      width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(145deg, var(--accent), var(--accent-2));
-      box-shadow: inset 0 0 0 2px rgba(255,255,255,.25), 0 4px 14px rgba(37,99,235,.35);
-      display: grid; place-items: center; color: white; font-weight: 800; font-size: 16px;
+    .brand svg{ width:28px; height:28px }
+    .brand strong{ font-weight:700; letter-spacing:.2px }
+    .nav-links{
+      display:flex; align-items:center; gap:18px;
     }
-    .brand span{ font-weight: 700; letter-spacing: .3px }
-    .menu{ display:flex; gap: 14px; align-items:center }
-    .menu a{
-      padding: 8px 12px; border-radius: 10px; color: var(--muted); text-decoration: none; font-weight: 500;
-      transition: transform .15s ease, background .2s ease, color .2s ease;
+    .nav-links a{
+      color:var(--muted); font-weight:500; padding:8px 10px; border-radius:8px;
+      transition: background var(--speed) ease, color var(--speed) ease, transform var(--speed) ease;
     }
-    .menu a:hover{ background: color-mix(in oklab, var(--accent) 12%, transparent); color: var(--text); transform: translateY(-1px) }
-    .cta{
-      padding: 9px 14px; border-radius: 12px; background: var(--accent); color: white !important; font-weight: 600;
-      box-shadow: 0 6px 18px rgba(37,99,235,.28); border: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+    .nav-links a:hover{ background:color-mix(in oklch, var(--accent) 10%, transparent); color:var(--text); text-decoration:none; transform:translateY(-1px) }
+    .nav-links a.active{ color:var(--accent); background:transparent; }
+    .nav-cta{
+      display:flex; align-items:center; gap:10px;
     }
-    .cta:hover{ background: var(--accent-2) }
-    .hamb{ display:none; background:none; border:none; padding:8px; border-radius:10px }
-    .hamb:focus{ outline: 3px solid var(--ring) }
-    /* Mobile menu */
-    .drawer{ display:none; border-top: 1px solid var(--border); padding: 10px 0 16px }
-    .drawer a{ display:block; padding: 10px 14px; color: var(--muted); text-decoration:none; border-radius: 10px }
-    .drawer a:hover{ background: color-mix(in oklab, var(--accent) 12%, transparent); color: var(--text) }
-    /* Sections */
-    section{ padding: clamp(48px, 9vw, 96px) 0 }
+
+    .btn{
+      --bgc:var(--accent);
+      --fgc:white;
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      background: var(--bgc); color: var(--fgc);
+      padding:10px 14px; border-radius: 10px;
+      border: 1px solid color-mix(in oklch, var(--bgc) 60%, #0000);
+      box-shadow: 0 1px 1px rgba(0,0,0,.04), 0 4px 14px rgba(37,99,235,.18);
+      font-weight:600; letter-spacing:.2px;
+      transition: transform var(--speed) ease, box-shadow var(--speed) ease, background var(--speed) ease;
+    }
+    .btn:hover{ transform: translateY(-1px); text-decoration:none; box-shadow: 0 2px 8px rgba(37,99,235,.24) }
+    .btn:active{ transform: translateY(0) scale(.99) }
+    .btn-outline{
+      --bgc: transparent; --fgc: var(--text);
+      background: transparent; color:var(--text);
+      border:1px solid var(--border); box-shadow:none;
+    }
+    .btn-outline:hover{ background: color-mix(in oklch, var(--accent) 8%, transparent) }
+
+    .menu{
+      display:none; border:1px solid var(--border); background:var(--surface);
+      padding:8px 10px; border-radius:10px;
+    }
+
     /* Hero */
     .hero{
-      display:grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center;
+      padding-top: clamp(28px, 6vw, 64px);
+      padding-bottom: clamp(36px, 8vw, 96px);
     }
-    .eyebrow{
-      display:inline-flex; gap:10px; align-items:center; padding:6px 10px; border-radius: 999px; font-size: 13px;
-      background: color-mix(in oklab, var(--accent) 10%, transparent);
-      border: 1px solid color-mix(in oklab, var(--accent) 22%, transparent);
-      color: var(--accent-2)
+    .hero-inner{
+      display:grid; grid-template-columns: 1fr; gap: 22px;
     }
-    .title{ font-size: clamp(28px, 6vw, 48px); line-height: 1.15; margin: 12px 0 14px; letter-spacing: .2px }
-    .subtitle{ font-size: clamp(16px, 2.3vw, 20px); color: var(--muted); margin-bottom: 24px }
-    .actions{ display:flex; gap: 12px; flex-wrap:wrap; margin-top: 8px }
-    .btn{
-      display:inline-flex; align-items:center; gap:10px; text-decoration:none; font-weight:600;
-      padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border); color: var(--text); background: var(--card);
-      box-shadow: var(--shadow); transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      color:var(--muted); font-weight:600; letter-spacing:.3px; text-transform:uppercase; font-size:12px;
+      background: color-mix(in oklch, var(--accent) 8%, transparent);
+      padding:6px 10px; border-radius:999px; width:max-content; border:1px solid var(--border);
     }
-    .btn:hover{ transform: translateY(-2px) }
-    .btn.alt{
-      background: linear-gradient(180deg, var(--accent), var(--accent-2));
-      color: white; border-color: color-mix(in oklab, var(--accent) 45%, transparent);
-      box-shadow: 0 10px 28px rgba(37,99,235,.35);
+    .title{
+      font-size: var(--headline); line-height:1.05; letter-spacing:-.02em; margin:0;
     }
-    .art{
-      position: relative; min-height: 260px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--border);
-      box-shadow: var(--shadow); overflow: hidden;
+    .subtitle{
+      margin: 4px 0 0 0; font-size: var(--subhead); color:var(--muted)
     }
-    .pulse{
-      position: absolute; inset: -40% -30% auto auto; width: 560px; height: 560px; border-radius: 50%;
-      background: radial-gradient(closest-side, color-mix(in oklab, var(--accent) 28%, transparent) 0%, transparent 70%);
-      filter: blur(10px); opacity: .6; pointer-events: none;
+    .cta-row{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;
     }
-    .art-svg{
-      position: absolute; inset: 0; width: 100%; height: 100%;
+    .hero-note{
+      color:var(--muted); font-size:14px; margin-top:8px
     }
-    /* About */
-    .about{
-      display:grid; grid-template-columns: .9fr 1.1fr; gap: 36px; align-items: start;
+    .hero-card{
+      margin-top:18px; background:var(--surface); border:1px solid var(--border);
+      border-radius: var(--radius); padding:16px; display:flex; gap:14px; align-items:center; box-shadow: var(--shadow);
     }
-    .panel{
-      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--space);
-      box-shadow: var(--shadow);
+    .hero-icon{
+      width:40px; height:40px; border-radius:10px; display:grid; place-items:center;
+      background: color-mix(in oklch, var(--accent) 12%, transparent);
+      color: var(--accent);
     }
-    .kpi{
-      display:grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 14px;
+
+    /* Sections */
+    section{ padding: clamp(28px, 6vw, 72px) 0 }
+    .section-head{
+      display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom: 18px;
     }
-    .kpi div{ background: color-mix(in oklab, var(--accent) 8%, transparent); border:1px solid color-mix(in oklab, var(--accent) 22%, transparent); padding: 12px; border-radius: 12px; text-align: center }
-    .kpi b{ display:block; font-size: 20px }
-    /* Projects */
+    .section-head h2{
+      margin:0; font-size: clamp(22px, 3.2vw, 28px); letter-spacing:-.01em;
+    }
+    .section-head p{ margin:0; color:var(--muted) }
+
+    /* Cards / grids */
     .grid{
-      display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+      display:grid; gap:16px;
+      grid-template-columns: 1fr;
     }
+    @media (min-width: 700px){
+      .grid.cols-2{ grid-template-columns: repeat(2, 1fr) }
+      .hero-inner{ grid-template-columns: 1.2fr .8fr; align-items:center }
+    }
+    @media (min-width: 980px){
+      .grid.cols-3{ grid-template-columns: repeat(3, 1fr) }
+    }
+
     .card{
-      display:flex; flex-direction:column; gap: 12px; padding: 18px; border-radius: var(--radius);
-      background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow);
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      background:var(--surface); border:1px solid var(--border); border-radius: var(--radius);
+      padding:18px; box-shadow: var(--shadow); transition: transform var(--speed) ease, box-shadow var(--speed) ease, border-color var(--speed) ease;
     }
-    .card:hover{ transform: translateY(-4px); border-color: color-mix(in oklab, var(--accent) 40%, transparent); box-shadow: 0 8px 28px rgba(2,6,23,.12) }
-    .card .icon{
-      width: 42px; height: 42px; border-radius: 10px; display:grid; place-items:center; color:white;
-      background: linear-gradient(145deg, var(--accent), var(--accent-2));
-      box-shadow: inset 0 0 0 2px rgba(255,255,255,.28), 0 6px 18px rgba(37,99,235,.35);
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 2px 6px rgba(2,6,23,.06), 0 18px 36px rgba(2,6,23,.10);
+      border-color: color-mix(in oklch, var(--accent) 30%, var(--border));
     }
-    .card h3{ margin: 4px 0 4px; font-size: 20px }
-    .card p{ color: var(--muted); margin: 0 0 4px }
-    .tags{ display:flex; flex-wrap: wrap; gap: 8px; margin-top: 6px }
-    .tag{ font-size: 12px; color: var(--muted); padding: 6px 8px; border-radius: 999px; border:1px dashed color-mix(in oklab, var(--accent) 30%, transparent) }
-    .card a.more{ margin-top: auto; align-self: flex-start; text-decoration: none; font-weight: 600; padding: 8px 10px; border-radius: 10px; border:1px solid var(--border); background: color-mix(in oklab, var(--accent) 10%, transparent) }
-    .card a.more:hover{ background: color-mix(in oklab, var(--accent) 18%, transparent) }
-    /* Skills */
-    .skills{
-      display:flex; flex-wrap:wrap; gap: 10px;
+    .card h3{ margin:6px 0 6px; font-size: 20px }
+    .card p{ margin:0; color:var(--muted) }
+    .card .meta{
+      display:flex; flex-wrap:wrap; gap:8px; margin-top:12px
     }
     .chip{
-      padding: 10px 12px; border-radius: 999px; background: var(--card); border: 1px solid var(--border);
-      box-shadow: var(--shadow); color: var(--text); font-weight: 600; font-size: 14px;
-      transition: transform .15s ease, background .2s ease;
+      font-size:12px; color:var(--muted); border:1px solid var(--border); background: color-mix(in oklch, var(--accent) 8%, transparent);
+      padding:6px 8px; border-radius: 999px
     }
-    .chip:hover{ transform: translateY(-2px) }
+    .project-actions{ display:flex; gap:10px; margin-top:14px; flex-wrap:wrap }
+    .link{
+      display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:10px; border:1px solid var(--border);
+      color:var(--text); background:transparent; transition: background var(--speed) ease, transform var(--speed) ease;
+    }
+    .link:hover{ background: color-mix(in oklch, var(--accent) 10%, transparent); text-decoration:none; transform: translateY(-1px) }
+
+    /* Skills */
+    .skills{ display:flex; flex-wrap:wrap; gap:10px }
+    .skill{
+      display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:999px;
+      background:var(--surface); border:1px solid var(--border); box-shadow: var(--shadow);
+      transition: transform var(--speed) ease, box-shadow var(--speed) ease;
+    }
+    .skill:hover{ transform: translateY(-1px) }
+    .skill i{ font-style:normal; opacity:.9 }
+
     /* Contact */
-    .contact{
-      display:grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch;
+    .contact-card .row{ display:flex; flex-direction:column; gap:12px }
+    .contact-item{
+      display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:10px; border:1px solid var(--border);
+      background: color-mix(in oklch, var(--accent) 6%, transparent);
+      transition: background var(--speed) ease;
     }
-    .list{ display:flex; flex-direction:column; gap: 12px }
-    .item{
-      display:flex; align-items:center; justify-content: space-between; gap: 12px; padding: 14px; border-radius: 12px;
-      border: 1px solid var(--border); background: var(--card); box-shadow: var(--shadow);
-    }
-    .left{ display:flex; align-items:center; gap: 12px }
-    .left .ico{
-      width: 36px; height: 36px; border-radius: 8px; display:grid; place-items:center; color:white;
-      background: linear-gradient(145deg, var(--accent), var(--accent-2));
-    }
-    .item a{ text-decoration: none; font-weight: 600 }
-    .copy{
-      appearance: none; border: 1px solid var(--border); background: color-mix(in oklab, var(--accent) 10%, transparent);
-      color: var(--text); padding: 8px 10px; border-radius: 10px; font-weight: 600; cursor: pointer;
-    }
-    .copy:focus{ outline: 3px solid var(--ring) }
+    .contact-item:hover{ background: color-mix(in oklch, var(--accent) 10%, transparent) }
+    .contact-actions{ display:flex; gap:10px; margin-top:12px; flex-wrap:wrap }
+    .muted{ color:var(--muted) }
+
     /* Footer */
-    footer{ padding: 36px 0 60px; color: var(--muted); text-align: center }
-    /* Headings */
-    .sec-h{ display:flex; align-items:center; justify-content: space-between; gap: 12px; margin-bottom: 16px }
-    .sec-h h2{ margin: 0; font-size: 24px }
-    .muted{ color: var(--muted) }
-    /* Responsive */
-    @media (max-width: 900px){
-      .hero{ grid-template-columns: 1fr; }
-      .about{ grid-template-columns: 1fr; }
-      .grid{ grid-template-columns: 1fr 1fr }
-      .contact{ grid-template-columns: 1fr }
+    footer{ padding: 24px 0; border-top:1px solid var(--border); color:var(--muted); font-size:14px }
+
+    /* Focus outline */
+    :focus-visible{
+      outline: var(--focus) solid var(--ring);
+      outline-offset: 2px;
+      border-radius: 8px;
     }
-    @media (max-width: 680px){
-      .menu{ display:none }
-      .hamb{ display:block; color: var(--text) }
-      .grid{ grid-template-columns: 1fr }
-      .kpi{ grid-template-columns: 1fr 1fr 1fr }
+
+    /* Mobile nav */
+    @media (max-width: 780px){
+      .nav-links{ display:none }
+      .menu{ display:inline-flex; align-items:center; gap:6px; cursor:pointer }
+      .nav.open .nav-links{
+        display:flex; position:absolute; left:var(--space); right:var(--space); top:62px;
+        background:var(--surface); border:1px solid var(--border); border-radius:12px; box-shadow: var(--shadow);
+        padding:10px; flex-direction:column; align-items:stretch; z-index:60;
+      }
+      .nav.open .nav-links a{ padding:10px 12px }
     }
-    /* Reveal on scroll */
-    [data-reveal]{ opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease }
-    [data-reveal].on{ opacity: 1; transform: translateY(0) }
-    /* Focus styles */
-    .focusable:focus{ outline: 3px solid var(--ring); outline-offset: 2px }
+
+    /* Tiny helpers */
+    ul.clean{ list-style:none; padding:0; margin:0 }
+    .bullets{ margin:8px 0 0 0; padding-left: 18px }
+    .bullets li{ margin:6px 0; color:var(--muted) }
+    .spacer{ height:8px }
   </style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header role="banner">
-    <div class="wrap nav">
-      <a class="brand focusable" href="#home" aria-label="Home">
-        <div class="logo" aria-hidden="true">SJ</div>
-        <span>Shubham Jain</span>
-      </a>
-      <nav aria-label="Primary">
-        <div class="menu">
-          <a class="focusable" href="#about">About</a>
-          <a class="focusable" href="#projects">Projects</a>
-          <a class="focusable" href="#skills">Skills</a>
-          <a class="focusable" href="#contact">Contact</a>
-          <a class="cta focusable" href="https://ShubLabs.ai" target="_blank" rel="noopener">ShubLabs.ai ↗</a>
-        </div>
-      </nav>
-      <button class="hamb" id="hamb" aria-expanded="false" aria-controls="drawer" aria-label="Toggle menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+
+  <header>
+    <div class="container nav" id="nav">
+      <a class="brand" href="#home" aria-label="Home">
+        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0" stop-color="var(--accent)"/>
+              <stop offset="1" stop-color="var(--accent-600)"/>
+            </linearGradient>
+          </defs>
+          <rect x="4" y="4" width="40" height="40" rx="10" fill="url(#g)"/>
+          <path d="M15 28c6 0 8-8 14-8 3 0 5 2 5 5 0 6-6 11-13 11s-12-4-12-10c0-5 4-9 9-9 3 0 5 1 7 3" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
         </svg>
-      </button>
-    </div>
-    <div id="drawer" class="drawer wrap" hidden>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-      <a href="https://ShubLabs.ai" target="_blank" rel="noopener">ShubLabs.ai ↗</a>
+        <strong>Shubham&nbsp;Jain</strong>
+        <span class="muted" aria-hidden="true">/ CTO</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-outline" href="mailto:300shubhamjain@gmail.com" aria-label="Email Shubham">Email</a>
+        <button class="menu" id="menuBtn" aria-expanded="false" aria-controls="menuList">
+          <span aria-hidden="true">☰</span> Menu
+        </button>
+      </div>
     </div>
   </header>
 
-  <main id="main" tabindex="-1">
-    <section id="home">
-      <div class="wrap hero">
-        <div data-reveal>
-          <span class="eyebrow">CTO at ShubLabs.ai • Building AI infrastructure</span>
-          <h1 class="title">Shubham Jain — engineering AI infra for developer tools</h1>
-          <p class="subtitle">I design and ship scalable systems across inference, analytics, and LLM operations. I care about clean APIs, measurable safety, and fast feedback loops.</p>
-          <div class="actions">
-            <a class="btn alt focusable" href="#projects" aria-label="View projects">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              View Projects
-            </a>
-            <a class="btn focusable" href="#contact" aria-label="Get in touch">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 8v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8m18 0-7.89 5.26a2 2 0 0 1-2.22 0L3 8m18 0-2.18-1.45A2 2 0 0 0 17.64 6H6.36a2 2 0 0 0-1.18.55L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Get in touch
-            </a>
-          </div>
-        </div>
-        <div class="art" aria-hidden="true" data-reveal>
-          <div class="pulse"></div>
-          <svg class="art-svg" viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="var(--accent)"/><stop offset="100%" stop-color="var(--accent-2)"/>
-              </linearGradient>
-              <filter id="f1" x="-20%" y="-20%" width="140%" height="140%">
-                <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="2" />
-                <feDisplacementMap in="SourceGraphic" scale="12" />
-              </filter>
-            </defs>
-            <rect x="20" y="20" rx="14" width="560" height="160" fill="none" stroke="url(#g1)" stroke-width="2"/>
-            <g transform="translate(40,44)">
-              <rect x="0" y="0" width="160" height="24" rx="6" fill="url(#g1)" opacity="0.35"></rect>
-              <rect x="0" y="40" width="360" height="8" rx="4" fill="url(#g1)" opacity="0.35"></rect>
-              <rect x="0" y="60" width="300" height="8" rx="4" fill="url(#g1)" opacity="0.2"></rect>
-              <rect x="0" y="80" width="240" height="8" rx="4" fill="url(#g1)" opacity="0.2"></rect>
-            </g>
-            <g transform="translate(20,210)">
-              <rect x="0" y="0" width="260" height="190" rx="12" fill="none" stroke="url(#g1)" stroke-width="2"/>
-              <g transform="translate(18,18)">
-                <rect x="0" y="0" width="60" height="60" rx="10" fill="url(#g1)"></rect>
-                <rect x="0" y="80" width="200" height="8" rx="4" fill="url(#g1)" opacity="0.35"></rect>
-                <rect x="0" y="100" width="160" height="8" rx="4" fill="url(#g1)" opacity="0.2"></rect>
-              </g>
-            </g>
-            <g transform="translate(320,210)">
-              <rect x="0" y="0" width="260" height="190" rx="12" fill="none" stroke="url(#g1)" stroke-width="2"/>
-              <g transform="translate(18,18)">
-                <rect x="0" y="0" width="200" height="8" rx="4" fill="url(#g1)" opacity="0.35"></rect>
-                <rect x="0" y="20" width="160" height="8" rx="4" fill="url(#g1)" opacity="0.2"></rect>
-                <rect x="0" y="48" width="220" height="110" rx="10" fill="none" stroke="url(#g1)" stroke-width="2" filter="url(#f1)"></rect>
-              </g>
-            </g>
-          </svg>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" aria-labelledby="about-h">
-      <div class="wrap about">
-        <div class="panel" data-reveal>
-          <h2 id="about-h">About</h2>
-          <p class="muted">I’m Shubham Jain, currently CTO at ShubLabs.ai. I build high-leverage AI infrastructure for developer tools: multi-tenant inference gateways, real-time analytics, and automated site generation workflows. I enjoy taking ideas from whiteboard to production with strong observability and clear operational playbooks.</p>
-          <p class="muted">My focus: reliable LLM ops, safety guardrails, low-latency data paths, and team health. I’ve led cross-functional teams, hired for impact, and shipped systems serving thousands of requests per second.</p>
-        </div>
+  <main id="main">
+    <section class="hero container" id="home">
+      <div class="hero-inner">
         <div>
-          <div class="panel" data-reveal>
-            <div class="sec-h">
-              <h2>Impact snapshot</h2>
+          <span class="kicker">CTO · ShubLabs.ai</span>
+          <h1 class="title">Building AI infrastructure for developer tools.</h1>
+          <p class="subtitle">I design and scale systems that turn LLMs into reliable, observable, and safe capabilities for products teams depend on.</p>
+          <div class="cta-row" role="group" aria-label="Primary actions">
+            <a class="btn" href="mailto:300shubhamjain@gmail.com">Get in touch</a>
+            <a class="btn btn-outline" href="https://github.com/SHUBHAMJAIN-AI/Superplane_hackathon" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-outline" href="https://www.linkedin.com/in/shubham-jain-jiit" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+          <p class="hero-note">Focus: LLM Ops, distributed systems, MLOps, observability, and building excellent teams.</p>
+
+          <div class="hero-card" aria-label="Quick highlights">
+            <div class="hero-icon" aria-hidden="true">🤖</div>
+            <div>
+              <strong>ShubLabs.ai</strong> — multi-tenant inference gateway with prompt evals and safety guardrails.
+              <div class="muted">Also: realtime analytics pipeline and an AI portfolio generator workflow.</div>
             </div>
-            <div class="kpi" aria-label="Key performance indicators">
-              <div><b>200k+/s</b><small class="muted">analytics msgs</small></div>
-              <div><b>sub-1s</b><small class="muted">live dashboards</small></div>
-              <div><b>Multi-tenant</b><small class="muted">inference at scale</small></div>
-            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-labelledby="quick-stats">
+          <h2 id="quick-stats" style="margin: 0 0 6px 0; font-size:18px">What I care about</h2>
+          <ul class="bullets">
+            <li>Developer ergonomics over knobs; sensible defaults.</li>
+            <li>Observability as a first-class primitive.</li>
+            <li>Defense-in-depth for safety and reliability.</li>
+            <li>Shipping value quickly without compromising craft.</li>
+          </ul>
+          <div class="spacer"></div>
+          <div class="meta">
+            <span class="chip">TypeScript</span>
+            <span class="chip">Python</span>
+            <span class="chip">Go</span>
+            <span class="chip">Kubernetes</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="projects" aria-labelledby="projects-h">
-      <div class="wrap">
-        <div class="sec-h">
-          <h2 id="projects-h">Projects</h2>
-          <span class="muted">Selected work from infra + AI ops</span>
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>About</h2>
+          <p>CTO at ShubLabs.ai</p>
         </div>
-        <div class="grid">
-          <article class="card" data-reveal>
-            <div class="icon" aria-hidden="true">🤖</div>
-            <h3>ShubLabs.ai</h3>
-            <p>Multi-tenant inference gateway with prompt evaluations and safety guardrails. Built for reliability, isolation, and crisp developer ergonomics.</p>
-            <div class="tags" aria-label="Technologies">
-              <span class="tag">TypeScript</span>
-              <span class="tag">Go</span>
-              <span class="tag">Kubernetes</span>
-              <span class="tag">LLM Ops</span>
+        <div class="card">
+          <p>
+            I'm Shubham Jain, currently leading engineering at ShubLabs.ai where we build AI infrastructure for developer tools.
+            My work spans inference gateways, realtime analytics, and workflow automation that moves from prompt to production with confidence.
+          </p>
+          <p class="muted" style="margin-top:8px">
+            I enjoy simplifying complex systems, making them observable, and mentoring teams to deliver durable impact.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p>Selected work</p>
+        </div>
+
+        <div class="grid cols-3">
+          <article class="card">
+            <div style="display:flex; align-items:center; gap:12px">
+              <svg aria-hidden="true" focusable="false" width="44" height="44" viewBox="0 0 48 48">
+                <rect x="2" y="2" width="44" height="44" rx="12" fill="color-mix(in oklch, var(--accent) 18%, transparent)"/>
+                <path d="M12 30c6 0 8-8 14-8 3 0 5 2 5 5 0 6-6 11-13 11s-12-4-12-10c0-5 4-9 9-9 3 0 5 1 7 3" stroke="var(--accent)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              </svg>
+              <div>
+                <h3 style="margin:0">ShubLabs.ai — Inference Gateway</h3>
+                <div class="muted">Multi-tenant LLM gateway with evals and guardrails</div>
+              </div>
             </div>
-            <a class="more focusable" href="https://ShubLabs.ai" target="_blank" rel="noopener">Visit ShubLabs.ai ↗</a>
+            <p style="margin-top:8px">
+              Unified API across providers and local models with routing, rate limiting, prompt versioning,
+              automatic prompt-evals, and safety checks (toxicity/PII) before responses reach users.
+              Built-in tracing enables per-request visibility.
+            </p>
+            <ul class="bullets">
+              <li>Prompt eval harness and regression baselines for safe iteration.</li>
+              <li>Safety guardrails with configurable policies and redaction.</li>
+              <li>Observability: tracing, metrics, and structured logs.</li>
+            </ul>
+            <div class="meta">
+              <span class="chip">TypeScript</span>
+              <span class="chip">Go</span>
+              <span class="chip">Kubernetes</span>
+              <span class="chip">LLM Ops</span>
+            </div>
+            <div class="project-actions">
+              <a class="link" href="mailto:300shubhamjain@gmail.com">Request details →</a>
+            </div>
           </article>
 
-          <article class="card" data-reveal>
-            <div class="icon" aria-hidden="true">📈</div>
-            <h3>EdgePulse</h3>
-            <p>Real-time analytics pipeline handling 200k+ messages per second with sub-second dashboards. Built with efficient streaming, backpressure, and observability.</p>
-            <div class="tags">
-              <span class="tag">Go</span>
-              <span class="tag">Python</span>
-              <span class="tag">Distributed Systems</span>
-              <span class="tag">Observability</span>
+          <article class="card">
+            <div style="display:flex; align-items:center; gap:12px">
+              <svg aria-hidden="true" focusable="false" width="44" height="44" viewBox="0 0 48 48">
+                <rect x="2" y="2" width="44" height="44" rx="12" fill="color-mix(in oklch, var(--accent) 18%, transparent)"/>
+                <g fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round">
+                  <path d="M10 30c6-2 10 2 16 0s10-6 16-4"/>
+                  <path d="M10 22c6-2 10 2 16 0s10-6 16-4" opacity=".6"/>
+                  <path d="M10 14c6-2 10 2 16 0s10-6 16-4" opacity=".35"/>
+                </g>
+              </svg>
+              <div>
+                <h3 style="margin:0">EdgePulse — Realtime Analytics</h3>
+                <div class="muted">200k+ messages/sec with sub‑second dashboards</div>
+              </div>
             </div>
-            <a class="more focusable" href="#contact" aria-label="Contact for EdgePulse details">Request details →</a>
+            <p style="margin-top:8px">
+              Streaming ingestion and windowed aggregations power live dashboards and alerting.
+              Designed for bursty workloads with backpressure-aware consumers and cost-efficient storage tiers.
+            </p>
+            <ul class="bullets">
+              <li>Stream processing with idempotent, exactly-once semantics where it matters.</li>
+              <li>Sub-second updates for operational visibility.</li>
+              <li>Schema evolution and multi-tenant isolation.</li>
+            </ul>
+            <div class="meta">
+              <span class="chip">Go</span>
+              <span class="chip">Python</span>
+              <span class="chip">Distributed Systems</span>
+              <span class="chip">Observability</span>
+            </div>
+            <div class="project-actions">
+              <a class="link" href="mailto:300shubhamjain@gmail.com">Discuss architecture →</a>
+            </div>
           </article>
 
-          <article class="card" data-reveal>
-            <div class="icon" aria-hidden="true">🧰</div>
-            <h3>Portfolio Factory</h3>
-            <p>AI-generated personal sites automatically pushed to GitHub and deployed to Render via a SuperPlane workflow.</p>
-            <div class="tags">
-              <span class="tag">TypeScript</span>
-              <span class="tag">MLOps</span>
-              <span class="tag">CI/CD</span>
-              <span class="tag">SuperPlane</span>
+          <article class="card">
+            <div style="display:flex; align-items:center; gap:12px">
+              <svg aria-hidden="true" focusable="false" width="44" height="44" viewBox="0 0 48 48">
+                <rect x="2" y="2" width="44" height="44" rx="12" fill="color-mix(in oklch, var(--accent) 18%, transparent)"/>
+                <path d="M14 18h20M14 24h20M14 30h14" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+              <div>
+                <h3 style="margin:0">Portfolio Factory — AI Site Generator</h3>
+                <div class="muted">Prompt → site → GitHub → Render via SuperPlane</div>
+              </div>
             </div>
-            <a class="more focusable" href="https://github.com/SHUBHAMJAIN-AI/Superplane_hackathon" target="_blank" rel="noopener">View workflow repo ↗</a>
+            <p style="margin-top:8px">
+              Given a brief, generates a polished personal site, commits code to GitHub, and deploys to Render via an automated
+              SuperPlane workflow. Fast iteration with preview environments.
+            </p>
+            <ul class="bullets">
+              <li>Deterministic scaffolding with guardrails and linting.</li>
+              <li>One-click redeploys and PR previews.</li>
+              <li>Content blocks optimized for readability and a11y.</li>
+            </ul>
+            <div class="meta">
+              <span class="chip">TypeScript</span>
+              <span class="chip">MLOps</span>
+              <span class="chip">Automation</span>
+            </div>
+            <div class="project-actions">
+              <a class="link" href="https://github.com/SHUBHAMJAIN-AI/Superplane_hackathon" target="_blank" rel="noopener">View code →</a>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="skills" aria-labelledby="skills-h">
-      <div class="wrap">
-        <div class="sec-h">
-          <h2 id="skills-h">Skills</h2>
-          <span class="muted">What I use to ship and scale</span>
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <h2>Skills</h2>
+          <p>Tools and focus areas</p>
         </div>
-        <div class="skills" data-reveal>
-          <span class="chip">TypeScript</span>
-          <span class="chip">Python</span>
-          <span class="chip">Go</span>
-          <span class="chip">Kubernetes</span>
-          <span class="chip">LLM Ops</span>
-          <span class="chip">Distributed Systems</span>
-          <span class="chip">MLOps</span>
-          <span class="chip">Observability</span>
-          <span class="chip">Leadership</span>
-          <span class="chip">Hiring</span>
+        <div class="skills">
+          <span class="skill">🟦 <i>TypeScript</i></span>
+          <span class="skill">🐍 <i>Python</i></span>
+          <span class="skill">🦫 <i>Go</i></span>
+          <span class="skill">☸️ <i>Kubernetes</i></span>
+          <span class="skill">🧠 <i>LLM Ops</i></span>
+          <span class="skill">🌐 <i>Distributed systems</i></span>
+          <span class="skill">📦 <i>MLOps</i></span>
+          <span class="skill">📈 <i>Observability</i></span>
+          <span class="skill">🧭 <i>Leadership</i></span>
+          <span class="skill">🤝 <i>Hiring</i></span>
         </div>
       </div>
     </section>
 
-    <section id="contact" aria-labelledby="contact-h">
-      <div class="wrap">
-        <div class="sec-h">
-          <h2 id="contact-h">Contact</h2>
-          <span class="muted">Reach out for collaborations, infra design, or advisory</span>
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p>Say hello</p>
         </div>
-        <div class="contact">
-          <div class="list" data-reveal>
-            <div class="item">
-              <div class="left">
-                <div class="ico" aria-hidden="true">✉️</div>
-                <div>
-                  <div><strong>Email</strong></div>
-                  <a href="mailto:300shubhamjain@gmail.com">300shubhamjain@gmail.com</a>
-                </div>
+
+        <div class="card contact-card">
+          <div class="row">
+            <div class="contact-item">
+              <div aria-hidden="true">✉️</div>
+              <div>
+                <strong>Email</strong>
+                <div class="muted">300shubhamjain@gmail.com</div>
               </div>
-              <button class="copy" data-copy="300shubhamjain@gmail.com" aria-label="Copy email to clipboard">Copy</button>
+              <div style="margin-left:auto; display:flex; gap:8px">
+                <a class="btn btn-outline" href="mailto:300shubhamjain@gmail.com">Compose</a>
+                <button class="btn" id="copyEmailBtn" data-email="300shubhamjain@gmail.com">Copy</button>
+              </div>
             </div>
 
-            <div class="item">
-              <div class="left">
-                <div class="ico" aria-hidden="true">💻</div>
-                <div>
-                  <div><strong>GitHub</strong></div>
-                  <a href="https://github.com/SHUBHAMJAIN-AI/Superplane_hackathon" target="_blank" rel="noopener">github.com/SHUBHAMJAIN-AI/Superplane_hackathon</a>
-                </div>
+            <a class="contact-item" href="https://github.com/SHUBHAMJAIN-AI/Superplane_hackathon" target="_blank" rel="noopener" aria-label="GitHub repository">
+              <div aria-hidden="true">🐙</div>
+              <div>
+                <strong>GitHub</strong>
+                <div class="muted">github.com/SHUBHAMJAIN-AI/Superplane_hackathon</div>
               </div>
-              <a class="copy" href="https://github.com/SHUBHAMJAIN-AI/Superplane_hackathon" target="_blank" rel="noopener" aria-label="Open GitHub">Open</a>
-            </div>
+              <div style="margin-left:auto">Open →</div>
+            </a>
 
-            <div class="item">
-              <div class="left">
-                <div class="ico" aria-hidden="true">🔗</div>
-                <div>
-                  <div><strong>LinkedIn</strong></div>
-                  <a href="https://www.linkedin.com/in/shubham-jain-jiit/" target="_blank" rel="noopener">linkedin.com/in/shubham-jain-jiit</a>
-                </div>
+            <a class="contact-item" href="https://www.linkedin.com/in/shubham-jain-jiit" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+              <div aria-hidden="true">🔗</div>
+              <div>
+                <strong>LinkedIn</strong>
+                <div class="muted">linkedin.com/in/shubham-jain-jiit</div>
               </div>
-              <a class="copy" href="https://www.linkedin.com/in/shubham-jain-jiit/" target="_blank" rel="noopener" aria-label="Open LinkedIn">Connect</a>
-            </div>
+              <div style="margin-left:auto">Connect →</div>
+            </a>
           </div>
-
-          <form class="panel" data-reveal onsubmit="event.preventDefault();contactToast('Thanks, I will get back shortly.'); this.reset();" aria-label="Quick message">
-            <h3 style="margin-top:0">Quick message</h3>
-            <p class="muted" style="margin-top:-6px">Prefer email? I’ll reply within 1–2 business days.</p>
-            <div style="display:grid; gap:12px; grid-template-columns: 1fr 1fr">
-              <label>
-                <span class="muted">Name</span>
-                <input class="focusable" required name="name" type="text" placeholder="Your name" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background: var(--card); color: var(--text)"/>
-              </label>
-              <label>
-                <span class="muted">Email</span>
-                <input class="focusable" required name="email" type="email" placeholder="you@example.com" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background: var(--card); color: var(--text)"/>
-              </label>
-            </div>
-            <label>
-              <span class="muted">Message</span>
-              <textarea class="focusable" required name="message" rows="5" placeholder="What would you like to build?" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background: var(--card); color: var(--text)"></textarea>
-            </label>
-            <div style="display:flex; gap:10px; align-items:center; justify-content: space-between;">
-              <button type="submit" class="btn alt focusable">Send message</button>
-              <a href="mailto:300shubhamjain@gmail.com" class="btn focusable">Email instead</a>
-            </div>
-          </form>
         </div>
       </div>
     </section>
   </main>
 
-  <footer role="contentinfo">
-    <div class="wrap">
-      <div style="display:flex; gap:10px; align-items:center; justify-content:center; margin-bottom:10px">
-        <div class="logo" aria-hidden="true" style="width:22px;height:22px;font-size:12px">SJ</div>
-        <strong>Shubham Jain</strong>
-      </div>
-      <div class="muted">CTO at ShubLabs.ai — building AI infrastructure for developer tools</div>
-      <div class="muted" style="margin-top:10px">© <span id="year"></span> Shubham Jain. All rights reserved.</div>
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap">
+      <div>© <span id="year"></span> Shubham Jain. All rights reserved.</div>
+      <div class="muted">Built with care — light, minimal, and fast.</div>
     </div>
   </footer>
 
+  <div id="toast" role="status" aria-live="polite" aria-atomic="true" style="position:fixed; left:50%; transform:translateX(-50%); bottom:24px; padding:10px 12px; background:var(--surface); border:1px solid var(--border); border-radius:10px; box-shadow:var(--shadow); display:none; z-index:1000">
+    Copied to clipboard
+  </div>
+
   <script>
-    // Mobile nav toggle
-    (function(){
-      const b=document.getElementById('hamb');
-      const d=document.getElementById('drawer');
-      if(!b||!d) return;
-      b.addEventListener('click',()=>{
-        const open = b.getAttribute('aria-expanded')==='true';
-        b.setAttribute('aria-expanded', String(!open));
-        d.hidden = open;
+    // Mobile menu toggle
+    const nav = document.getElementById('nav');
+    const menuBtn = document.getElementById('menuBtn');
+    if (menuBtn){
+      menuBtn.addEventListener('click', ()=>{
+        const open = nav.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
       });
-      // Close drawer on link click
-      d.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
-        b.setAttribute('aria-expanded','false'); d.hidden=true;
-      }));
-    })();
-
-    // Simple reveal on scroll
-    const io = ('IntersectionObserver' in window) ? new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+      // Close menu on link click
+      nav.querySelectorAll('.nav-links a').forEach(a=>{
+        a.addEventListener('click', ()=> nav.classList.remove('open'));
       });
-    }, { threshold: 0.12 }) : null;
-    document.querySelectorAll('[data-reveal]').forEach(el=>{
-      if(io){ io.observe(el); } else { el.classList.add('on'); }
-    });
-
-    // Smooth scroll for same-page links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', (e)=>{
-        const id = a.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if(el){
-          e.preventDefault();
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.replaceState(null, '', '#'+id);
-        }
-      });
-    });
-
-    // Copy to clipboard + toast
-    function contactToast(text){
-      const t=document.createElement('div');
-      t.textContent=text;
-      t.style.position='fixed'; t.style.left='50%'; t.style.bottom='20px'; t.style.transform='translateX(-50%)';
-      t.style.padding='10px 14px'; t.style.borderRadius='10px'; t.style.background='var(--card)'; t.style.border='1px solid var(--border)';
-      t.style.boxShadow='var(--shadow)'; t.style.color='var(--text)'; t.style.zIndex='100'; t.style.opacity='0'; t.style.transition='opacity .2s ease, transform .2s ease';
-      document.body.appendChild(t);
-      requestAnimationFrame(()=>{ t.style.opacity='1'; t.style.transform='translateX(-50%) translateY(-4px)'; });
-      setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateX(-50%) translateY(0px)'; setTimeout(()=>t.remove(),200); }, 2000);
     }
-    document.querySelectorAll('[data-copy]').forEach(btn=>{
-      btn.addEventListener('click', async ()=>{
-        try{
-          await navigator.clipboard.writeText(btn.getAttribute('data-copy'));
-          contactToast('Copied to clipboard');
-        }catch(e){
-          contactToast('Select and copy manually');
+
+    // Scroll spy: highlight active section
+    const links = Array.from(document.querySelectorAll('.nav-links a'));
+    const sections = links.map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if (entry.isIntersecting){
+          const id = '#' + entry.target.id;
+          links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
         }
       });
-    });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0.01 });
+    sections.forEach(sec => observer.observe(sec));
+
+    // Header shadow on scroll (subtle)
+    const header = document.querySelector('header');
+    let lastY = 0;
+    window.addEventListener('scroll', ()=>{
+      const y = window.scrollY || document.documentElement.scrollTop;
+      const atTop = y < 2;
+      header.style.boxShadow = atTop ? 'none' : 'var(--shadow)';
+      lastY = y;
+    }, { passive:true });
+
+    // Copy email
+    const toast = document.getElementById('toast');
+    const copyBtn = document.getElementById('copyEmailBtn');
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      toast.style.opacity = '0';
+      requestAnimationFrame(()=>{
+        toast.style.transition = 'opacity 200ms ease, transform 200ms ease';
+        toast.style.opacity = '1';
+        toast.style.transform = 'translate(-50%, -4px)';
+      });
+      setTimeout(()=>{
+        toast.style.opacity = '0';
+        toast.style.transform = 'translate(-50%, 0px)';
+        setTimeout(()=> toast.style.display='none', 180);
+      }, 1600);
+    }
+    if (copyBtn){
+      copyBtn.addEventListener('click', async (e)=>{
+        const email = e.currentTarget.dataset.email;
+        try{
+          await navigator.clipboard.writeText(email);
+          showToast('Email copied');
+        }catch{
+          showToast('Press Ctrl/Cmd+C to copy: ' + email);
+        }
+      });
+    }
 
     // Current year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Respect reduced motion
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('*').forEach(el => el.style.scrollBehavior = 'auto');
+    } else {
+      document.documentElement.style.scrollBehavior = 'smooth';
+    }
   </script>
 </body>
 </html>
