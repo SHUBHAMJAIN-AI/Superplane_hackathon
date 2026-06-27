@@ -1,612 +1,588 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shubhham Jain — CTO Portfolio</title>
-  <meta name="description" content="Portfolio of Shubhham Jain, CTO. Projects, skills, and contact information. Light, minimal, accessible design." />
+  <meta name="description" content="Portfolio of Shubhham Jain, CTO — building AI-first products with calm, scalable engineering." />
   <style>
     :root{
-      --bg: #f8fafc;
-      --surface: #ffffff;
+      --bg: #fcfcfd;
       --text: #0f172a;
       --muted: #475569;
-      --border: #e2e8f0;
-      --accent: #2563eb;
-      --accent-600: #1d4ed8;
-      --ring: rgba(37,99,235,0.3);
-      --shadow: 0 8px 24px rgba(2,6,23,0.06);
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --accent: #2b6cb0;
+      --accent-2: #3b82f6;
+      --shadow: 0 10px 24px rgba(2,6,23,.06);
       --radius: 14px;
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    *,*::before,*::after{box-sizing:border-box}
+    html:focus-within{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.55;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:linear-gradient(180deg,#ffffff, #f7f9fc 35%, #f7f9fc 100%);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
-    img, svg { max-width: 100%; height: auto; }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .container{
-      width: min(1120px, 92vw);
-      margin-inline: auto;
+    img,svg{display:block;max-width:100%}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin:0 auto;padding:0 1rem}
+    .section{padding:4rem 0}
+    @media (max-width:720px){ .section{padding:3rem 0} }
+
+    /* Skip link */
+    .skip-link{
+      position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
     }
-    .visually-hidden{
-      position:absolute!important;
-      height:1px;width:1px;
-      overflow:hidden;
-      clip:rect(1px,1px,1px,1px);
-      white-space:nowrap;
-      border:0;padding:0;
+    .skip-link:focus{
+      position:fixed;left:1rem;top:1rem;width:auto;height:auto;padding:.6rem .8rem;
+      background:#000;color:#fff;border-radius:8px;z-index:10000;
     }
 
     /* Header / Nav */
-    .skip-link{
-      position:absolute; left:0; top:-40px;
-      background: var(--accent);
-      color:#fff; padding:10px 14px; border-radius:8px;
-      transition: top .2s ease;
-      z-index:9999;
+    header{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:color-mix(in oklab, var(--bg) 82%, #ffffff 18%, transparent 0%);
+      border-bottom:1px solid var(--border);
     }
-    .skip-link:focus{ top:10px; }
-    header.site-header{
-      position: sticky; top:0; z-index: 1000;
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: saturate(150%) blur(8px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-bar{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 14px 0;
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+      min-height:64px;
     }
     .brand{
-      display:flex; align-items:center; gap:.6rem;
-      font-weight:700; letter-spacing:0.2px;
+      display:flex;align-items:center;gap:.6rem;font-weight:700;letter-spacing:.2px;color:var(--text);
     }
     .brand-badge{
-      width:28px; height:28px; border-radius:8px; display:grid; place-items:center;
-      background: var(--accent); color:#fff; font-size:16px;
-      box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+      width:28px;height:28px;border-radius:8px;display:grid;place-items:center;
+      background:radial-gradient(120% 120% at 10% 10%, #78b3ff 0%, #3b82f6 45%, #1f5fbf 100%);
+      color:#fff;box-shadow:0 6px 14px rgba(59,130,246,.35);
+      font-size:16px
     }
-    nav ul{
-      list-style:none; margin:0; padding:0;
-      display:flex; gap: 1rem;
+
+    .nav-links{
+      display:flex;align-items:center;gap:.6rem;
     }
-    nav a{
-      color: var(--text);
-      text-decoration:none;
-      padding: 8px 10px;
-      border-radius:8px;
-      border: 1px solid transparent;
-      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    .nav-links a{
+      padding:.5rem .75rem;border-radius:9px;color:var(--text);
+      text-decoration:none;font-weight:600;letter-spacing:.2px;
+      transition:background .2s ease, color .2s ease, transform .2s ease;
     }
-    nav a:hover{
-      background: #eef2ff;
-      color: var(--accent);
-      border-color: #e0e7ff;
-      text-decoration:none;
+    .nav-links a:hover{background:#eef4ff}
+    .nav-links a[aria-current="true"]{
+      background: #e7f0ff;
+      color:var(--accent);
+      box-shadow:inset 0 0 0 1px color-mix(in oklab, var(--accent) 20%, white);
     }
-    nav a.active{
-      background: var(--accent);
-      color:#fff;
-      border-color: var(--accent);
+
+    .nav-toggle{
+      display:none;background:#ffffff;border:1px solid var(--border);color:var(--text);
+      padding:.5rem .7rem;border-radius:10px;font-weight:600;
     }
-    .menu-toggle{
-      display:none;
-      background:transparent;
-      border:1px solid var(--border);
-      padding:8px 10px;
-      border-radius:10px;
-      font-size:14px; color: var(--text);
+    .nav-toggle:focus-visible, .nav-links a:focus-visible, button:focus-visible, summary:focus-visible{
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    @media (max-width:860px){
+      .nav-toggle{display:inline-flex;align-items:center;gap:.5rem}
+      .nav-links{
+        position:absolute;inset-inline:0;top:64px;display:grid;gap:.25rem;
+        background:var(--bg);padding:.5rem 1rem 1rem;border-bottom:1px solid var(--border);
+        transform-origin:top center;transition:transform .2s ease, opacity .2s ease;
+        transform:scaleY(0);opacity:0;pointer-events:none;
+      }
+      .nav-links[data-open="true"]{transform:scaleY(1);opacity:1;pointer-events:auto}
+      .nav-links a{padding:.7rem .8rem}
     }
 
     /* Hero */
     .hero{
-      padding: clamp(48px, 7vw, 96px) 0;
+      display:grid;align-items:center;gap:2rem;grid-template-columns: 1.2fr .8fr;
+      min-height: clamp(480px, 62vh, 680px);
     }
-    .hero-card{
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: clamp(20px, 4vw, 48px);
-      display:grid;
-      gap: 1rem;
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} }
+    .hero-title{
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height:1.1;letter-spacing:-.5px;margin:0 0 .8rem 0;
     }
-    .eyebrow{
-      display:inline-flex; align-items:center; gap:.5rem;
-      font-size:14px; color: var(--muted);
-      padding: 6px 10px; border-radius: 999px; background: #eff6ff;
-      border:1px solid #e0f2fe;
-      width:fit-content;
-    }
-    .hero h1{
-      font-size: clamp(28px, 4.4vw, 52px);
-      line-height: 1.1; margin: .4rem 0;
-      letter-spacing:-0.5px;
-    }
-    .tagline{ color: var(--muted); font-size: clamp(16px, 1.6vw, 18px); max-width: 70ch; }
-    .cta{
-      display:flex; flex-wrap:wrap; gap:.75rem; margin-top:.5rem;
-    }
+    .hero-sub{color:var(--muted);font-size:clamp(1rem, 2.2vw, 1.15rem);max-width:60ch}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
     .btn{
-      display:inline-flex; align-items:center; gap:.6rem;
-      border:1px solid var(--border);
-      background:#fff; color: var(--text);
-      padding:10px 14px; border-radius:12px;
-      font-weight:600; transition: transform .15s ease, box-shadow .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
-      box-shadow: 0 2px 8px rgba(2,6,23,0.05);
+      display:inline-flex;align-items:center;gap:.55rem;
+      border:1px solid var(--border);background:#fff;color:var(--text);
+      padding:.7rem .95rem;border-radius:12px;font-weight:700;text-decoration:none;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      box-shadow:0 2px 0 rgba(2,6,23,.04)
     }
-    .btn:hover{ transform: translateY(-1px); }
-    .btn-primary{
-      background: var(--accent); color:#fff; border-color: var(--accent);
-      box-shadow: 0 8px 20px rgba(37,99,235,0.25);
+    .btn.primary{
+      background:linear-gradient(180deg, color-mix(in oklab, var(--accent) 90%, #ffffff), var(--accent));
+      color:#fff;border-color: color-mix(in oklab, var(--accent) 75%, black 10%);
+      box-shadow:0 10px 20px rgba(43,108,176,.25);
     }
-    .btn-primary:hover{ background: var(--accent-600); }
+    .btn:hover{transform:translateY(-2px)}
+    .btn svg{width:18px;height:18px}
 
-    /* Sections */
-    section{
-      padding: clamp(40px, 6vw, 88px) 0;
+    .hero-visual{
+      position:relative;isolation:isolate;
+      aspect-ratio:1.1/1;border-radius:18px;background:conic-gradient(from 180deg at 60% 40%, #ecf3ff 0deg, #ffffff 140deg, #eef2ff 320deg);
+      border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;
     }
-    .section-header{
-      margin-bottom: 1.2rem;
+    .spark{
+      position:absolute;inset:0;display:grid;place-items:center;opacity:.9
     }
-    .section-header h2{
-      font-size: clamp(22px, 2.6vw, 32px); margin:0 0 .4rem 0;
-    }
-    .section-header p{ color: var(--muted); margin:0; max-width: 70ch; }
+    .spark svg{width:76%;max-width:420px}
+    .spark .dot{fill:#3b82f6}
+    .spark .ring{stroke:#93c5fd;stroke-width:1.6;fill:none;opacity:.9}
+    .spark .star{fill:#1d4ed8}
 
-    .card{
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: clamp(16px, 3vw, 24px);
-      box-shadow: var(--shadow);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    }
-    .card:hover{ transform: translateY(-3px); border-color:#cbd5e1; box-shadow: 0 12px 28px rgba(2,6,23,0.09); }
-
-    /* About */
-    .about{
-      display: grid; gap: 1.2rem;
-    }
-    .about-grid{
-      display:grid;
-      gap: clamp(14px, 3vw, 24px);
-      grid-template-columns: 1fr;
-    }
-    .about-item{
-      display:flex; gap: 16px; align-items:flex-start;
-    }
-    .about-emoji{
-      font-size: 22px; line-height:1; background:#f1f5f9; border:1px solid var(--border); border-radius:12px; padding: 10px;
+    /* Cards / generic */
+    .kicker{
+      display:inline-flex;align-items:center;gap:.5rem;
+      font-size:.85rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--muted);
+      background:#eef2ff;border:1px solid #dbe5ff;border-radius:999px;padding:.35rem .6rem;margin-bottom:1rem
     }
 
     /* Description */
-    .description ul{
-      margin: .6rem 0 0 0; padding-left: 1.1rem; color: var(--muted);
-    }
-    .description li{ margin: .25rem 0; }
+    .lead{font-size:1.05rem;color:var(--muted);max-width:70ch}
 
     /* Projects */
-    .projects-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: clamp(14px, 3vw, 24px);
-      align-items: stretch;
+    .grid{
+      display:grid;gap:1rem;
+      grid-template-columns: repeat(12, 1fr);
     }
-    .project h3{ margin: .4rem 0 .2rem; font-size: 18px; }
-    .project p{ margin: .2rem 0 0; color: var(--muted); }
-    .project .badge{
-      display:inline-block; font-size: 12px; color: var(--muted);
-      padding: 4px 8px; border-radius:999px; border:1px dashed #d1d5db; background:#f8fafc; margin-top:.6rem;
+    .grid-fit{grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))}
+    .project-card{
+      background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+      padding:1rem;display:grid;gap:.6rem;box-shadow:var(--shadow);
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
-    .thumb{
-      background: linear-gradient(135deg, #eff6ff, #fafafa);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px; height: 140px;
-      display:grid; place-items:center; overflow:hidden;
+    .project-card:hover{transform:translateY(-4px);box-shadow:0 16px 30px rgba(2,6,23,.08);border-color:#d7e0ff}
+    .pc-head{display:flex;align-items:center;gap:.7rem}
+    .pc-ico{
+      width:40px;height:40px;border-radius:10px;display:grid;place-items:center;
+      background:#eef4ff;border:1px solid #dbe5ff;font-size:20px
     }
-    .thumb svg{ width: 100%; height: 100%; }
+    .pc-title{margin:0;font-size:1.05rem;letter-spacing:.2px}
+    .pc-desc{color:var(--muted);margin:.15rem 0 0 0}
+    .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.2rem}
+    .tag{font-size:.8rem;padding:.2rem .5rem;border-radius:999px;background:#f2f5fb;border:1px solid var(--border);color:#334155}
+    .pc-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.3rem}
+    .link-btn{
+      display:inline-flex;align-items:center;gap:.4rem;border-radius:10px;
+      border:1px solid var(--border);padding:.4rem .6rem;background:#fff;color:var(--text);text-decoration:none;font-weight:600
+    }
+    .link-btn:hover{background:#f5f8ff}
+
+    details.project-details{
+      background:#fbfdff;border:1px dashed #d8e3ff;border-radius:12px;padding:.6rem .8rem;margin-top:.5rem
+    }
+    details > summary{
+      cursor:pointer;list-style:none;display:flex;align-items:center;gap:.5rem;font-weight:600
+    }
+    details > summary::-webkit-details-marker{display:none}
+    details[open]{background:#f7fbff}
 
     /* Skills */
-    .skill-tags{
-      display:flex; flex-wrap: wrap; gap: .5rem;
+    .skills{
+      display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))
     }
-    .tag{
-      background:#f1f5f9; color:#0f172a; border:1px solid var(--border);
-      padding: 6px 10px; border-radius: 999px; font-weight:600; font-size:14px;
-      transition: background .2s ease, transform .15s ease;
+    .skill{
+      background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+      padding:1rem;box-shadow:var(--shadow)
     }
-    .tag:hover{ background:#e2e8f0; transform: translateY(-1px); }
+    .skill h3{margin:.2rem 0 .4rem 0;font-size:1rem}
+    .skill ul{list-style:none;padding:0;margin:0;display:flex;gap:.4rem;flex-wrap:wrap}
+    .skill li{
+      background:#f2f6ff;border:1px solid #dfe8ff;border-radius:999px;
+      padding:.25rem .55rem;font-size:.85rem
+    }
 
-    .skills-grid{
-      display:grid; gap: clamp(14px, 3vw, 24px);
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    /* About */
+    .about{
+      background:linear-gradient(180deg, #f7f9ff, #ffffff);
+      border:1px solid var(--border);border-radius:20px;padding:1rem;box-shadow:var(--shadow)
     }
-    .skill-list{ margin: .6rem 0 0 0; padding-left: 1.1rem; color: var(--muted); }
-    .skill-list li{ margin:.25rem 0; }
+    .about-grid{display:grid;gap:1rem;grid-template-columns:2fr 1fr}
+    @media (max-width:880px){ .about-grid{grid-template-columns:1fr} }
+    .note{
+      background:#fff;border:1px solid var(--border);border-radius:12px;padding:.8rem
+    }
 
     /* Contact */
-    .contact-card .email{
-      display:inline-flex; align-items:center; gap:.5rem; font-size:18px; font-weight:700;
-      padding:10px 14px; border-radius:12px; border:1px dashed #cbd5e1; background:#f8fafc;
+    .contact{
+      display:grid;gap:1rem;grid-template-columns:1.2fr .8fr
     }
+    @media (max-width:880px){ .contact{grid-template-columns:1fr} }
+    .email-box{
+      background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow);
+      display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem
+    }
+    .mailto{font-weight:800;letter-spacing:.3px}
+    .copy-btn{border:1px solid var(--border);background:#fff;border-radius:10px;padding:.5rem .75rem;font-weight:700}
+    .copy-btn:hover{background:#f6f9ff}
 
-    /* Footer */
-    footer{
-      padding: 32px 0; color: var(--muted); font-size: 14px; text-align: center;
-    }
+    footer{padding:2rem 0;color:var(--muted);font-size:.95rem}
 
-    /* Responsive Nav */
-    @media (max-width: 760px){
-      .menu-toggle{ display:inline-flex; align-items:center; gap:.5rem; }
-      nav ul{
-        position:absolute;
-        top:60px; right:4%;
-        background: var(--surface);
-        border:1px solid var(--border);
-        border-radius:12px;
-        padding:10px; box-shadow: var(--shadow);
-        display:none; flex-direction: column; gap:.2rem;
-        width: min(260px, 92vw);
-      }
-      nav ul.open{ display:flex; }
-      nav a{ display:block; padding:10px; }
-    }
-    @media (min-width: 860px){
-      .hero-card{
-        grid-template-columns: 1.2fr 1fr;
-        align-items: center;
-      }
-      .about-grid{
-        grid-template-columns: 1.2fr 1fr;
-      }
-    }
-
-    /* Focus */
-    :focus-visible{
-      outline: 3px solid var(--ring);
-      outline-offset: 2px;
-      border-radius: 10px;
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      html:focus-within{scroll-behavior:auto}
+      .btn, .project-card, .nav-links{transition:none}
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header" id="top" role="banner">
-    <div class="container nav-bar">
-      <a class="brand" href="#top" aria-label="Home">
-        <span class="brand-badge" aria-hidden="true">🧠</span>
-        <span>Shubhham&nbsp;Jain — CTO</span>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header role="banner">
+    <div class="container nav">
+      <a class="brand" href="#" aria-label="Go to top">
+        <span class="brand-badge" aria-hidden="true">⚡</span>
+        <span>Shubhham Jain</span>
       </a>
-
-      <button class="menu-toggle" aria-controls="site-menu" aria-expanded="false" id="menuButton">
-        ☰ Menu
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Menu
       </button>
-
       <nav aria-label="Primary">
-        <ul id="site-menu">
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#description" class="nav-link">Description</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#skills" class="nav-link">Skills</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
+        <ul id="primary-nav" class="nav-links" role="list">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#description">Description</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="main" class="container" role="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-card">
+  <main id="main" tabindex="-1">
+    <section id="hero" class="section">
+      <div class="container hero">
         <div>
-          <span class="eyebrow">🚀 CTO, builder of thoughtful AI products</span>
-          <h1 id="hero-title">Hi, I’m Shubhham Jain.</h1>
-          <p class="tagline">I lead engineering, product, and research to turn ideas into resilient, human‑centered systems. Previously scaled teams, shipped ML platforms, and delivered production‑grade AI features end‑to‑end.</p>
-          <div class="cta">
-            <a class="btn btn-primary" href="#projects" aria-label="See projects">See projects</a>
-            <a class="btn" href="#contact" aria-label="Contact Shubhham">Contact</a>
+          <span class="kicker" aria-label="Role">CTO • Product & AI</span>
+          <h1 class="hero-title">Shubhham Jain</h1>
+          <p class="hero-sub">
+            CTO focused on building calm, scalable systems and AI-first products. I turn ambiguity into shipped software and resilient teams.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              View Projects
+            </a>
+            <a class="btn" href="mailto:300shubhamjain@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              Email me
+            </a>
           </div>
         </div>
-        <div class="card" aria-label="Profile illustration">
-          <div class="thumb" role="img" aria-label="Abstract profile graphic">
-            <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <div class="hero-visual" aria-hidden="true">
+          <div class="spark">
+            <svg viewBox="0 0 200 200" role="img" aria-label="">
               <defs>
                 <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
                   <stop offset="0%" stop-color="#93c5fd"/>
-                  <stop offset="100%" stop-color="#e0e7ff"/>
+                  <stop offset="100%" stop-color="#3b82f6"/>
                 </linearGradient>
               </defs>
-              <rect x="0" y="0" width="400" height="160" rx="18" fill="url(#g1)" opacity="0.6"/>
-              <circle cx="90" cy="80" r="36" fill="#2563eb" opacity="0.9"/>
-              <rect x="150" y="50" width="160" height="18" rx="8" fill="#1d4ed8" opacity="0.8"/>
-              <rect x="150" y="78" width="120" height="18" rx="8" fill="#3b82f6" opacity="0.8"/>
-              <rect x="150" y="106" width="80" height="18" rx="8" fill="#60a5fa" opacity="0.8"/>
-              <g transform="translate(290,30)">
-                <rect x="0" y="0" width="96" height="96" rx="14" fill="#fff" stroke="#e2e8f0"/>
-                <path d="M16 64 L48 24 L80 64" stroke="#2563eb" stroke-width="6" fill="none" stroke-linecap="round"/>
-                <circle cx="48" cy="64" r="8" fill="#1d4ed8"/>
+              <circle class="ring" cx="100" cy="100" r="78"></circle>
+              <circle class="ring" cx="100" cy="100" r="52" opacity=".8"></circle>
+              <circle class="ring" cx="100" cy="100" r="26" opacity=".7"></circle>
+              <g>
+                <circle class="dot" cx="100" cy="20" r="4"/>
+                <circle class="dot" cx="180" cy="100" r="4"/>
+                <circle class="dot" cx="20" cy="100" r="4"/>
+                <circle class="dot" cx="100" cy="180" r="4"/>
               </g>
+              <path class="star" d="M100 70l6 16h16l-13 9 5 16-14-9-14 9 5-16-13-9h16z" />
+              <rect x="35" y="132" width="130" height="8" rx="4" fill="url(#g1)" opacity=".8"/>
             </svg>
           </div>
-          <p style="margin:.8rem 0 0;color:var(--muted)">Lightweight systems, strong fundamentals, clear interfaces.</p>
         </div>
       </div>
     </section>
 
-    <section id="about" aria-labelledby="about-title">
-      <div class="section-header">
-        <h2 id="about-title">About</h2>
-        <p>Builder, mentor, and systems thinker. I thrive at the intersection of product strategy and deep engineering.</p>
-      </div>
-      <div class="about-grid">
-        <article class="card about">
-          <div class="about-item">
-            <div class="about-emoji" aria-hidden="true">💡</div>
-            <div>
-              <strong>Vision to execution</strong>
-              <p style="margin:.3rem 0 0; color:var(--muted)">From 0→1 prototypes to 1→n platforms, I bridge research, product, and infrastructure to ship outcomes.</p>
-            </div>
-          </div>
-          <div class="about-item">
-            <div class="about-emoji" aria-hidden="true">🧭</div>
-            <div>
-              <strong>Hands-on leadership</strong>
-              <p style="margin:.3rem 0 0; color:var(--muted)">I set direction, hire great people, and write code where it matters most—clarity over complexity.</p>
-            </div>
-          </div>
-          <div class="about-item">
-            <div class="about-emoji" aria-hidden="true">🔒</div>
-            <div>
-              <strong>Trust & reliability</strong>
-              <p style="margin:.3rem 0 0; color:var(--muted)">Privacy, safety, and observability are first-class features, not afterthoughts.</p>
-            </div>
-          </div>
-        </article>
-        <aside class="card">
-          <h3 style="margin:.2rem 0 .6rem; font-size:18px;">Quick facts</h3>
-          <ul class="skill-list" style="margin-top:.2rem;">
-            <li>10+ years leading cross‑functional engineering teams</li>
-            <li>Focus: AI/ML platforms, product engineering, DX</li>
-            <li>Based in a remote‑first world; async by default</li>
-            <li>Currently building next‑gen tools at <strong>ShubLAbs .ai</strong></li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-
-    <section id="description" class="description" aria-labelledby="description-title">
-      <div class="section-header">
+    <section id="description" class="section" aria-labelledby="description-title">
+      <div class="container">
         <h2 id="description-title">Description</h2>
-        <p>A snapshot of how I approach technology and teams.</p>
+        <p class="lead">
+          I design and lead engineering for products that blend thoughtful UX with robust infrastructure. My work spans AI/ML platforms, developer tools, and data‑intensive web apps. I value clarity, iteration speed, and maintainability—shipping small, learning fast, and scaling when it matters.
+        </p>
       </div>
-      <article class="card">
-        <p style="margin-top:0">I design teams and systems that scale gracefully. My philosophy is simple: reduce surface area, invest in tooling, and make the right thing the easiest thing.</p>
-        <ul>
-          <li>Start with outcomes, measure with clear metrics, iterate quickly.</li>
-          <li>Bias to boring tech for core paths; innovate where it creates leverage.</li>
-          <li>APIs first, strong contracts, observability built in.</li>
-          <li>Small autonomous teams, shared context, excellent taste in defaults.</li>
-        </ul>
-      </article>
     </section>
 
-    <section id="projects" aria-labelledby="projects-title">
-      <div class="section-header">
+    <section id="projects" class="section" aria-labelledby="projects-title">
+      <div class="container">
         <h2 id="projects-title">Projects</h2>
-        <p>Selected work spanning AI platforms, developer tools, and production systems.</p>
-      </div>
+        <div class="grid grid-fit" style="margin-top:1rem">
+          <article class="project-card" aria-labelledby="proj1-title">
+            <div class="pc-head">
+              <div class="pc-ico" aria-hidden="true">🤖</div>
+              <h3 class="pc-title" id="proj1-title">ShubLAbs .ai</h3>
+            </div>
+            <p class="pc-desc">An AI product studio crafting practical, end‑to‑end solutions—from data pipelines and evals to delightful interfaces.</p>
+            <div class="tags" aria-label="Technologies">
+              <span class="tag">AI/ML</span><span class="tag">RAG</span><span class="tag">TypeScript</span><span class="tag">Next.js</span><span class="tag">Postgres</span>
+            </div>
+            <div class="pc-actions">
+              <a class="link-btn" href="#" aria-label="Open ShubLAbs .ai">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M7 7h10v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Open
+              </a>
+              <a class="link-btn" href="#" aria-label="Read case study for ShubLAbs .ai">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 5h16M4 12h16M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Case study
+              </a>
+            </div>
+            <details class="project-details">
+              <summary>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                What I led
+              </summary>
+              <ul>
+                <li>Model evaluation harness with dataset versioning and automated regressions</li>
+                <li>Infra for data ingestion, vector search, and cost telemetry</li>
+                <li>Design system and accessibility pass for the app shell</li>
+              </ul>
+            </details>
+          </article>
 
-      <div class="projects-grid">
-        <article class="card project">
-          <div class="thumb" role="img" aria-label="ShubLAbs .ai abstract mark">
-            <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <defs>
-                <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#dbeafe"/>
-                  <stop offset="100%" stop-color="#bfdbfe"/>
-                </linearGradient>
-              </defs>
-              <rect width="400" height="140" rx="14" fill="url(#g2)"/>
-              <g transform="translate(40,28)">
-                <rect x="0" y="0" width="120" height="84" rx="12" fill="#fff" stroke="#e2e8f0"/>
-                <path d="M20 60 C40 30, 80 30, 100 60" stroke="#2563eb" stroke-width="6" fill="none" stroke-linecap="round"/>
-              </g>
-              <g transform="translate(190,28)">
-                <rect x="0" y="0" width="170" height="20" rx="10" fill="#1d4ed8" opacity=".9"/>
-                <rect x="0" y="32" width="130" height="20" rx="10" fill="#3b82f6" opacity=".9"/>
-                <rect x="0" y="64" width="80" height="20" rx="10" fill="#60a5fa" opacity=".9"/>
-              </g>
-            </svg>
-          </div>
-          <h3>ShubLAbs .ai</h3>
-          <p>Composable AI stack for rapid prototyping to production—prompt routing, evals, and observability with a clean SDK.</p>
-          <span class="badge">AI Platform • SDK • Observability</span>
-        </article>
+          <article class="project-card" aria-labelledby="proj2-title">
+            <div class="pc-head">
+              <div class="pc-ico" aria-hidden="true">🧭</div>
+              <h3 class="pc-title" id="proj2-title">Decision Canvas</h3>
+            </div>
+            <p class="pc-desc">Lightweight strategy tool for aligning product bets with engineering capacity and risk.</p>
+            <div class="tags">
+              <span class="tag">Product</span><span class="tag">D3</span><span class="tag">Svelte</span><span class="tag">Node</span>
+            </div>
+            <div class="pc-actions">
+              <a class="link-btn" href="#">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M7 7h10v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Open
+              </a>
+            </div>
+          </article>
 
-        <article class="card project">
-          <div class="thumb" role="img" aria-label="EdgeBoard abstract mark">
-            <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect width="400" height="140" rx="14" fill="#eef2ff"/>
-              <g transform="translate(36,28)" stroke="#4f46e5" fill="none" stroke-width="4">
-                <rect x="0" y="0" width="120" height="84" rx="10" fill="#fff" stroke="#c7d2fe"/>
-                <circle cx="60" cy="42" r="20" fill="#4f46e5"/>
-                <path d="M140 42 H 320" stroke="#4f46e5" stroke-linecap="round"/>
-                <path d="M160 62 H 260" stroke="#93c5fd" stroke-linecap="round"/>
-                <path d="M160 22 H 220" stroke="#6366f1" stroke-linecap="round"/>
-              </g>
-            </svg>
-          </div>
-          <h3>EdgeBoard</h3>
-          <p>Realtime analytics and feature store at the edge with minimal latency and strong privacy guarantees.</p>
-          <span class="badge">Edge • Streaming • Privacy</span>
-        </article>
+          <article class="project-card" aria-labelledby="proj3-title">
+            <div class="pc-head">
+              <div class="pc-ico" aria-hidden="true">📈</div>
+              <h3 class="pc-title" id="proj3-title">Telemetry Kit</h3>
+            </div>
+            <p class="pc-desc">Privacy‑first product analytics with server‑side events, sampling, and anomaly alerts.</p>
+            <div class="tags">
+              <span class="tag">Go</span><span class="tag">ClickHouse</span><span class="tag">gRPC</span><span class="tag">Kubernetes</span>
+            </div>
+            <div class="pc-actions">
+              <a class="link-btn" href="#">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M7 7h10v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Open
+              </a>
+            </div>
+          </article>
 
-        <article class="card project">
-          <div class="thumb" role="img" aria-label="PromptForge abstract mark">
-            <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect width="400" height="140" rx="14" fill="#f0f9ff"/>
-              <g transform="translate(40,30)">
-                <rect x="0" y="0" width="100" height="80" rx="10" fill="#fff" stroke="#bae6fd"/>
-                <rect x="16" y="18" width="68" height="10" rx="5" fill="#0ea5e9"/>
-                <rect x="16" y="36" width="52" height="10" rx="5" fill="#38bdf8"/>
-                <rect x="16" y="54" width="40" height="10" rx="5" fill="#7dd3fc"/>
-              </g>
-              <g transform="translate(170,30)">
-                <rect x="0" y="0" width="190" height="80" rx="12" fill="#e0f2fe"/>
-                <path d="M20 40 H 170" stroke="#0284c7" stroke-width="6" stroke-linecap="round"/>
-                <path d="M40 20 H 150" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
-                <path d="M40 60 H 120" stroke="#0ea5e9" stroke-width="6" stroke-linecap="round"/>
-              </g>
-            </svg>
-          </div>
-          <h3>PromptForge</h3>
-          <p>Versioned prompt pipelines with evaluation and A/B tooling that meet CI/CD where teams work.</p>
-          <span class="badge">Tooling • Evals • CI</span>
-        </article>
-
-        <article class="card project">
-          <div class="thumb" role="img" aria-label="DataRibbon abstract mark">
-            <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect width="400" height="140" rx="14" fill="#ecfeff"/>
-              <g transform="translate(36,26)">
-                <path d="M0 60 C 60 20, 120 100, 180 60 S 300 20, 360 60" stroke="#06b6d4" stroke-width="6" fill="none"/>
-                <circle cx="180" cy="60" r="10" fill="#0ea5e9"/>
-              </g>
-            </svg>
-          </div>
-          <h3>DataRibbon</h3>
-          <p>Secure data contracts and lineage with automatic schema diffs and alerting.</p>
-          <span class="badge">Data • Contracts • Lineage</span>
-        </article>
-      </div>
-    </section>
-
-    <section id="skills" aria-labelledby="skills-title">
-      <div class="section-header">
-        <h2 id="skills-title">Skills</h2>
-        <p>Leadership and hands‑on capabilities spanning product, AI, and platform engineering.</p>
-      </div>
-      <div class="skills-grid">
-        <article class="card">
-          <h3 style="margin:.2rem 0 .6rem; font-size:18px;">Leadership</h3>
-          <div class="skill-tags" aria-label="Leadership skills">
-            <span class="tag">Org design</span>
-            <span class="tag">Roadmapping</span>
-            <span class="tag">Hiring</span>
-            <span class="tag">Mentorship</span>
-            <span class="tag">Product strategy</span>
-          </div>
-          <ul class="skill-list">
-            <li>Ownership and clarity of priorities</li>
-            <li>Rituals that reduce overhead and increase signal</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3 style="margin:.2rem 0 .6rem; font-size:18px;">AI / ML</h3>
-          <div class="skill-tags" aria-label="AI skills">
-            <span class="tag">LLMs</span>
-            <span class="tag">Retrieval</span>
-            <span class="tag">Evals</span>
-            <span class="tag">Feature stores</span>
-            <span class="tag">MLOps</span>
-          </div>
-          <ul class="skill-list">
-            <li>Prompt design, routing, and observability</li>
-            <li>Offline metrics ↔ online performance loops</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3 style="margin:.2rem 0 .6rem; font-size:18px;">Platform</h3>
-          <div class="skill-tags" aria-label="Platform skills">
-            <span class="tag">APIs</span>
-            <span class="tag">Distributed systems</span>
-            <span class="tag">Postgres</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Go</span>
-            <span class="tag">Python</span>
-          </div>
-          <ul class="skill-list">
-            <li>Strong contracts, performance, and DX</li>
-            <li>Infrastructure as product; observability by default</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact" aria-labelledby="contact-title">
-      <div class="section-header">
-        <h2 id="contact-title">Contact</h2>
-        <p>Open to thoughtful conversations, advisory, and collaborations.</p>
-      </div>
-      <article class="card contact-card">
-        <p style="margin-top:0">Reach me directly at:</p>
-        <p class="email">📫 <a href="mailto:300shubhamjain@gmail.com">300shubhamjain@gmail.com</a></p>
-        <div class="cta" style="margin-top:.8rem;">
-          <a class="btn btn-primary" href="mailto:300shubhamjain@gmail.com?subject=Hello%20Shubhham">Say hello</a>
-          <a class="btn" href="#projects">Browse projects</a>
+          <article class="project-card" aria-labelledby="proj4-title">
+            <div class="pc-head">
+              <div class="pc-ico" aria-hidden="true">🔐</div>
+              <h3 class="pc-title" id="proj4-title">Keyless Edge</h3>
+            </div>
+            <p class="pc-desc">Passkey‑based auth drop‑in with organization SSO, roles, and audit trails.</p>
+            <div class="tags">
+              <span class="tag">WebAuthn</span><span class="tag">OAuth</span><span class="tag">Edge</span><span class="tag">TypeScript</span>
+            </div>
+            <div class="pc-actions">
+              <a class="link-btn" href="#">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M7 7h10v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Open
+              </a>
+            </div>
+          </article>
         </div>
-      </article>
+      </div>
+    </section>
+
+    <section id="skills" class="section" aria-labelledby="skills-title">
+      <div class="container">
+        <h2 id="skills-title">Skills</h2>
+        <div class="skills" style="margin-top:1rem">
+          <div class="skill" aria-labelledby="s1">
+            <h3 id="s1">Leadership</h3>
+            <ul>
+              <li>CTO Coaching</li><li>Hiring & Org Design</li><li>Roadmapping</li><li>OKRs</li><li>Incident Review</li>
+            </ul>
+          </div>
+          <div class="skill" aria-labelledby="s2">
+            <h3 id="s2">Product</h3>
+            <ul>
+              <li>Discovery</li><li>Prototyping</li><li>UX Systems</li><li>A/B Testing</li><li>Analytics</li>
+            </ul>
+          </div>
+          <div class="skill" aria-labelledby="s3">
+            <h3 id="s3">Frontend</h3>
+            <ul>
+              <li>TypeScript</li><li>React/Next</li><li>State Machines</li><li>Accessibility</li><li>Web Vitals</li>
+            </ul>
+          </div>
+          <div class="skill" aria-labelledby="s4">
+            <h3 id="s4">Backend</h3>
+            <ul>
+              <li>Node/Go</li><li>Postgres</li><li>gRPC</li><li>Eventing</li><li>GraphQL</li>
+            </ul>
+          </div>
+          <div class="skill" aria-labelledby="s5">
+            <h3 id="s5">AI/ML</h3>
+            <ul>
+              <li>RAG</li><li>Evals</li><li>Prompting</li><li>Embeddings</li><li>Inference Pipelines</li>
+            </ul>
+          </div>
+          <div class="skill" aria-labelledby="s6">
+            <h3 id="s6">DevOps</h3>
+            <ul>
+              <li>Kubernetes</li><li>CI/CD</li><li>Observability</li><li>Edge</li><li>Security</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section" aria-labelledby="about-title">
+      <div class="container">
+        <h2 id="about-title">About</h2>
+        <div class="about">
+          <div class="about-grid">
+            <div>
+              <p>
+                I care about calm companies, crisp APIs, and interfaces that get out of your way. I lead by shaping constraints and unblocking teams—reducing time‑to‑insight for customers and time‑to‑ship for engineers.
+              </p>
+              <p>
+                Recently, I’ve focused on AI evaluation workflows, data quality, and making complex systems approachable with opinionated defaults.
+              </p>
+            </div>
+            <div class="note">
+              <strong>Principles</strong>
+              <ul>
+                <li>Start simple, automate last</li>
+                <li>Measure reality, not ambition</li>
+                <li>Design for failure paths</li>
+                <li>Small PRs, strong docs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <div class="container contact">
+        <div>
+          <h2 id="contact-title">Contact</h2>
+          <p class="lead">For collaborations, advising, or speaking, reach me directly.</p>
+          <div class="email-box" role="group" aria-label="Email">
+            <div style="display:flex;align-items:center;gap:.6rem;flex:1 1 auto;min-width:220px">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <a class="mailto" href="mailto:300shubhamjain@gmail.com">300shubhamjain@gmail.com</a>
+            </div>
+            <button class="copy-btn" id="copyEmail" type="button" aria-live="polite">
+              Copy email
+            </button>
+          </div>
+        </div>
+        <div>
+          <h3 class="kicker" style="margin:0 0 .6rem 0">Availability</h3>
+          <p>Advisory (4–6 hrs/mo) • Short sprints • Fractional CTO</p>
+          <p style="margin-top:.4rem">Based in IST • Working async, remote‑first.</p>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer role="contentinfo">
-    <div class="container">
-      <p>© <span id="year"></span> Shubhham Jain. Built with care and no external dependencies.</p>
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:.6rem;justify-content:space-between;align-items:center">
+      <div>© <span id="year"></span> Shubhham Jain</div>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+        <a class="link-btn" href="#" aria-label="LinkedIn profile">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 0 .02 5.001 2.5 2.5 0 0 0-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.84-2.05 3.79-2.05 4.06 0 4.81 2.67 4.81 6.14V21h-4v-5.3c0-1.26-.02-2.89-1.76-2.89-1.76 0-2.03 1.37-2.03 2.8V21H9z"/></svg>
+          LinkedIn
+        </a>
+        <a class="link-btn" href="#" aria-label="GitHub profile">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.93c.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.69-3.88-1.54-3.88-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.11-.76.41-1.27.75-1.56-2.55-.29-5.23-1.27-5.23-5.64 0-1.25.45-2.28 1.2-3.09-.12-.29-.52-1.45.11-3.02 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.57.23 2.73.11 3.02.75.81 1.2 1.84 1.2 3.09 0 4.38-2.68 5.35-5.24 5.63.42.37.8 1.1.8 2.22 0 1.6-.02 2.89-.02 3.29 0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+          GitHub
+        </a>
+      </div>
     </div>
   </footer>
 
   <script>
-    // Mobile menu toggle
+    // Mobile nav toggle
     (function(){
-      const btn = document.getElementById('menuButton');
-      const menu = document.getElementById('site-menu');
-      if(!btn || !menu) return;
+      const btn = document.querySelector('.nav-toggle');
+      const list = document.getElementById('primary-nav');
+      if(!btn || !list) return;
+      const close = () => { list.dataset.open = "false"; btn.setAttribute('aria-expanded', 'false'); };
+      const open = () => { list.dataset.open = "true"; btn.setAttribute('aria-expanded', 'true'); };
       btn.addEventListener('click', () => {
-        const open = menu.classList.toggle('open');
-        btn.setAttribute('aria-expanded', String(open));
+        const isOpen = list.dataset.open === "true";
+        isOpen ? close() : open();
       });
-      // Close menu when clicking a link
-      menu.addEventListener('click', (e) => {
-        const t = e.target;
-        if(t.tagName === 'A' && menu.classList.contains('open')){
-          menu.classList.remove('open');
-          btn.setAttribute('aria-expanded','false');
+      // Close on nav link click (mobile)
+      list.addEventListener('click', (e)=>{
+        if(e.target.closest('a')) close();
+      });
+      // Close on escape
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') close(); });
+    })();
+
+    // Active section highlighting
+    (function(){
+      const links = Array.from(document.querySelectorAll('.nav-links a'));
+      const map = new Map();
+      links.forEach(a=>{
+        const id = a.getAttribute('href')?.replace('#','');
+        const sec = id ? document.getElementById(id) : null;
+        if(sec) map.set(sec, a);
+      });
+      const setActive = (el) => {
+        links.forEach(a=>a.removeAttribute('aria-current'));
+        if(el) map.get(el)?.setAttribute('aria-current','true');
+      };
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            setActive(entry.target);
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+      map.forEach((_, sec)=> io.observe(sec));
+    })();
+
+    // Copy email
+    (function(){
+      const btn = document.getElementById('copyEmail');
+      if(!btn) return;
+      const email = '300shubhamjain@gmail.com';
+      btn.addEventListener('click', async ()=>{
+        try{
+          await navigator.clipboard.writeText(email);
+          const prev = btn.textContent;
+          btn.textContent = 'Copied!';
+          btn.setAttribute('aria-label','Email copied');
+          setTimeout(()=>{ btn.textContent = prev; }, 1400);
+        }catch(err){
+          // Fallback: prompt
+          const ok = window.prompt('Copy email:', email);
+          if(ok !== null){
+            btn.textContent = 'Ready to paste';
+            setTimeout(()=>{ btn.textContent = 'Copy email'; }, 1400);
+          }
         }
       });
     })();
 
-    // Scroll spy for active nav links
-    (function(){
-      const links = document.querySelectorAll('.nav-link');
-      const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-      if(!('IntersectionObserver' in window)) return;
-
-      const setActive = (id) => {
-        links.forEach(l => {
-          l.classList.toggle('active', l.getAttribute('href') === '#' + id);
-        });
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            setActive(entry.target.id);
-          }
-        });
-      }, { rootMargin: '-40% 0px -50% 0px', threshold: 0.01 });
-
-      sections.forEach(sec => observer.observe(sec));
-    })();
-
-    // Current year
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
